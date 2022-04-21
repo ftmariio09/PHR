@@ -3,11 +3,11 @@
 <!--                                                         -->
 <!-- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="56" Path="C:/ASL/Universidad/3er curso/Programacion de HW Reconfigurable/PFA/github/PHR/ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.xpr">
+<Project Version="7" Minor="56" Path="C:/ASL/Universidad/3er curso/Programacion de HW Reconfigurable/PFA/github/PHR/Version2/PFA/project_1/project_1.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="ca571f9d54444782bbf197b05aefd07a"/>
-    <Option Name="Part" Val="xc7a100tcsg324-1"/>
+    <Option Name="Id" Val="ab70e6ec303546cf9757c0fc06a7af73"/>
+    <Option Name="Part" Val="xc7a35tcpg236-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
     <Option Name="CompiledLibDirModelSim" Val="$PCACHEDIR/compile_simlib/modelsim"/>
@@ -87,55 +87,59 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/imports/new/Comp_1.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/new/Comp_1.vhd">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../PracticasVHDL/ComparadorGenericoNbits/CompaGen/CompaGen.srcs/sources_1/new/Comp_1.vhd"/>
-          <Attr Name="ImportTime" Val="1648047171"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/imports/new/Comp_1.vhd"/>
+          <Attr Name="ImportTime" Val="1650376336"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/new/Comp_4.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/new/Comp_4.vhd">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../PracticasVHDL/ComparadorGenericoNbits/CompaGen/CompaGen.srcs/sources_1/new/Comp_4.vhd"/>
-          <Attr Name="ImportTime" Val="1648048673"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/imports/new/Comp_4.vhd"/>
+          <Attr Name="ImportTime" Val="1650376415"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/Inyector.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/new/Inyector.vhd">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/new/Inyector.vhd"/>
+          <Attr Name="ImportTime" Val="1650379862"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/new/Prueba.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/new/Prueba.vhd">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../PracticasVHDL/ProMulPak/Utiles/project_1.srcs/sources_1/new/Prueba.vhd"/>
-          <Attr Name="ImportTime" Val="1647554365"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/imports/new/Prueba.vhd"/>
+          <Attr Name="ImportTime" Val="1650375540"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/Tutorial/tutorial.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/Tutorial/tutorial.vhd">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../PracticasVHDL/PracticaEncenderLEDconSwitch/BlinkingLed/LedSimple.srcs/sources_1/imports/Tutorial/tutorial.vhd"/>
-          <Attr Name="ImportTime" Val="1649166622"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/imports/Tutorial/tutorial.vhd"/>
+          <Attr Name="ImportTime" Val="1650377996"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/ParCoGli.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/new/ParCoGli.vhd">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/new/ParCoGli.vhd"/>
+          <Attr Name="ImportTime" Val="1650559645"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/new/Conversor.vhd">
+      <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/new/Conversor.vhd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../PracticasVHDL/ConversorAD/cAD/cAD.srcs/sources_1/new/Conversor.vhd"/>
-          <Attr Name="ImportTime" Val="1649329092"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/imports/new/Conversor.vhd"/>
+          <Attr Name="ImportTime" Val="1649349321"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -143,14 +147,15 @@
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="ParCoGli"/>
+        <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
       <Filter Type="Constrs"/>
       <File Path="$PSRCDIR/constrs_1/imports/Tutorial/Basys3_Master.xdc">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../PracticasVHDL/digital/sources/Tutorial/Basys3_Master.xdc"/>
-          <Attr Name="ImportTime" Val="1647964426"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/constrs_1/imports/Tutorial/Basys3_Master.xdc"/>
+          <Attr Name="ImportTime" Val="1650554191"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
@@ -160,16 +165,18 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
-      <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sim_1/new/ParCoGli_Test.vhd">
+      <File Path="$PSRCDIR/sim_1/imports/new/ParCoGli_Test.vhd">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sim_1/new/ParCoGli_Test.vhd"/>
+          <Attr Name="ImportTime" Val="1648731602"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="ParCoGli_Test"/>
+        <Option Name="TopModule" Val="Conversor"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="TransportPathDelay" Val="0"/>
@@ -221,18 +228,22 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="15">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a100tcsg324-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" WriteIncrSynthDcp="false" State="current" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PPRDIR/../../../../../../../../../../PracticasVHDL/PFA/ParCoGLi/ParCoGLi.srcs/utils_1/imports/synth_1">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a35tcpg236-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" WriteIncrSynthDcp="false" State="current" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2021"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="xadc_wiz_0_synth_1" Type="Ft3:Synth" SrcSet="xadc_wiz_0" Part="xc7a100tcsg324-1" ConstrsSet="xadc_wiz_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/xadc_wiz_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PPRDIR/../../../../../../../../../../PracticasVHDL/PFA/ParCoGLi/ParCoGLi.srcs/utils_1/imports/xadc_wiz_0_synth_1">
+    <Run Id="xadc_wiz_0_synth_1" Type="Ft3:Synth" SrcSet="xadc_wiz_0" Part="xc7a35tcpg236-1" ConstrsSet="xadc_wiz_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/xadc_wiz_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/xadc_wiz_0_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -240,9 +251,11 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PPRDIR/../../../../../../../../../../PracticasVHDL/PFA/ParCoGLi/ParCoGLi.srcs/utils_1/imports/impl_1">
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -257,9 +270,11 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="xadc_wiz_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="xadc_wiz_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="xadc_wiz_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PPRDIR/../../../../../../../../../../PracticasVHDL/PFA/ParCoGLi/ParCoGLi.srcs/utils_1/imports/xadc_wiz_0_impl_1">
+    <Run Id="xadc_wiz_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="xadc_wiz_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="xadc_wiz_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/xadc_wiz_0_impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
