@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/ftmar/PHR/Version2/PFA/project_1/project_1.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'xadc_wiz_0'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/ftmar/PHR/Version2/PFA/project_1/project_1.srcs/sources_1/imports/sources_1/imports/new/Conversor.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'Conversor'

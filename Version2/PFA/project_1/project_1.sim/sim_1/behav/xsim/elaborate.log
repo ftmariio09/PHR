@@ -1,0 +1,8 @@
+Vivado Simulator v2021.2
+Copyright 1986-1999, 2001-2021 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2021.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip -L xpm --snapshot Conversor_behav xil_defaultlib.Conversor -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+ERROR: [VRFC 10-3353] formal port 'vauxp14' has no actual or default value [C:/Users/ftmar/PHR/Version2/PFA/project_1/project_1.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0.vhd:68]
+ERROR: [VRFC 10-3353] formal port 'vauxn14' has no actual or default value [C:/Users/ftmar/PHR/Version2/PFA/project_1/project_1.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0.vhd:69]
+ERROR: [XSIM 43-3321] Static elaboration of top level VHDL design unit conversor in library work failed.
