@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1650985062" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/ParCoGli.dcp">
+  <File Type="PA-TCL" Name="ParCoGli.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="ParCoGli_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="ParCoGli_reports.tcl"/>
+  <File Type="RDS-RDS" Name="ParCoGli.vds"/>
+  <File Type="RDS-UTIL" Name="ParCoGli_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="ParCoGli_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="ParCoGli.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="ParCoGli_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="ParCoGli_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/new/Comp_1.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/imports/new/Comp_1.vhd"/>
+        <Attr Name="ImportTime" Val="1650376336"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/new/Comp_4.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/imports/new/Comp_4.vhd"/>
+        <Attr Name="ImportTime" Val="1650376415"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sources_1/new/Inyector.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/new/Inyector.vhd"/>
+        <Attr Name="ImportTime" Val="1650379862"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/new/Prueba.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/imports/new/Prueba.vhd"/>
+        <Attr Name="ImportTime" Val="1650375540"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sources_1/imports/Tutorial/tutorial.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/imports/Tutorial/tutorial.vhd"/>
+        <Attr Name="ImportTime" Val="1650377996"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/sources_1/new/ParCoGli.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/sources_1/new/ParCoGli.vhd"/>
+        <Attr Name="ImportTime" Val="1650559645"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="ParCoGli"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/Tutorial/Basys3_Master.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../ParteHechaPorAlex/PFA/ParCoGLi/ParCoGLi.srcs/constrs_1/imports/Tutorial/Basys3_Master.xdc"/>
+        <Attr Name="ImportTime" Val="1650554191"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/ParCoGli.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="xadc_wiz_0"/>
+</GenRun>

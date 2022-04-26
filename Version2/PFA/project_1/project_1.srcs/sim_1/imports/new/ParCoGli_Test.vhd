@@ -48,7 +48,23 @@ architecture Testeo of ParCoGli_Test is
     end component;
     FOR ALL: parche USE ENTITY WORK.ParCoGli(Arquitectura);
     -- POR HACER
-
+    SIGNAL glargina, lispro, glucosa : std_logic := '1';
+    SIGNAL VpIn, VnIn, vauxp6, vauxn6, vauxp14, vauxn14 : std_logic;
+    SIGNAL datAdicionales : std_logic;
+    SIGNAL ledRGB : std_logic_vector (2 downto 0);
+    SIGNAL buzzer, bombaInsGlargina, bombaInsLispro, bombaGlucosa : std_logic;
+    SIGNAL clk : std_logic := '0';
 begin
+    aparato: parche PORT MAP (glargina, lispro, glucosa, VpIn, VnIn, vauxp6, vauxn6, vauxp14, vauxn14, datAdicionales, ledRGB, buzzer, bombaInsGlargina, bombaInsLispro, bombaGlucosa, clk);
+    process
+        variable i : integer := 0;
+    begin
+        for i in 0 to 127 loop
+            wait for 50 ns;
+            clk <= '0';
 
+            wait for 10 ns;
+            clk <= '1';
+        end loop;
+    end process;
 end Testeo;
