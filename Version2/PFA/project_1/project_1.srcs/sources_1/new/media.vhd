@@ -59,7 +59,8 @@ begin
         end if;
     end if; 
     
-    for i IN (0 to numDatos) loop
+    sumaAux := 0;
+    for i IN 0 to numDatos loop
         sumaAux := cola(i) + sumaAux;
     end loop;
     
