@@ -140,6 +140,8 @@ architecture Arquitectura of ParCoGli is
     FOR ALL: Comp_N USE ENTITY WORK.Comp_N_Reu(Iterativa);
     FOR ALL: inyector USE ENTITY WORK.inyector(behavior);
     FOR ALL: encendedorBuzzy USE ENTITY WORK.encendedorBuzzy(behavior);
+    --OR ALL: xadc_wiz_0 USE ENTITY WORK.xadc_wiz_0(xilinx);
+
 
 begin
     uut:   xadc_wiz_0 PORT MAP(

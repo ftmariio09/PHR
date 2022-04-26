@@ -37,14 +37,18 @@ end ParCoGli_Test;
 
 architecture Testeo of ParCoGli_Test is
     component parche
-        Port ( sGlucosa, sInsulina, sNGlargina, sNLispro, sNGlucosa: IN std_logic;
-             datAdicionales : INOUT std_logic;
-             ledRGB : OUT std_logic_vector (2 downto 0);
-             buzzer, bombaInsGlargina, bombaInsLispro : OUT std_logic);
+        Port ( sNGlargina, sNLispro, sNGlucosa: IN std_logic; -- Entradas digitales
+             VpIn, VnIn, vauxp6, vauxn6, vauxp14, vauxn14 : in std_logic; -- vaux 6 es sensor insulina, vaux 14 es sensor glucosa: sGlucosa, sInsulina, 
+             datAdicionales : INOUT std_logic;  --Datos adicionales -EN DESARROLLO CON LA ESP-32
+             ledRGB : OUT std_logic_vector (2 downto 0);  -- Salidas del RGB
+             buzzer, bombaInsGlargina, bombaInsLispro, bombaGlucosa : OUT std_logic;  -- Salidas del Buzzer y actuadores
+             clk : in std_logic -- Senial de reloj
+             -- led : out std_logic_vector (11 downto 0);
+            );
     end component;
     FOR ALL: parche USE ENTITY WORK.ParCoGli(Arquitectura);
     -- POR HACER
-begin
 
+begin
 
 end Testeo;

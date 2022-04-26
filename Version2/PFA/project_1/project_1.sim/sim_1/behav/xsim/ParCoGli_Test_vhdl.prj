@@ -1,0 +1,13 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../project_1.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0.vhd" \
+"../../../../project_1.srcs/sources_1/imports/sources_1/imports/new/Comp_1.vhd" \
+"../../../../project_1.srcs/sources_1/imports/sources_1/imports/new/Comp_4.vhd" \
+"../../../../project_1.srcs/sources_1/imports/sources_1/new/Inyector.vhd" \
+"../../../../project_1.srcs/sources_1/imports/sources_1/imports/new/Prueba.vhd" \
+"../../../../project_1.srcs/sources_1/imports/sources_1/imports/Tutorial/tutorial.vhd" \
+"../../../../project_1.srcs/sources_1/imports/sources_1/new/ParCoGli.vhd" \
+"../../../../project_1.srcs/sim_1/imports/new/ParCoGli_Test.vhd" \
+
+# Do not sort compile order
+nosort
