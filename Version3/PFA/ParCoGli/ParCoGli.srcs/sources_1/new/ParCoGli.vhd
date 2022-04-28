@@ -34,7 +34,7 @@ USE WORK.Utiles.ALL;
 --use UNISIM.VComponents.all;
 
 entity ParCoGli is
-    Port ( sNGlargina, sNLispro, sNGlucosa: IN std_logic; -- Entradas digitales
+    Port (sNGlargina, sNLispro, sNGlucosa: IN std_logic; -- Entradas digitales
          VpIn, VnIn, vauxp6, vauxn6, vauxp14, vauxn14 : in std_logic; -- vaux 6 es sensor insulina, vaux 14 es sensor glucosa: sGlucosa, sInsulina, 
          datAdicionales : INOUT std_logic;  --Datos adicionales -EN DESARROLLO CON LA ESP-32
          ledRGB : OUT std_logic_vector (2 downto 0);  -- Salidas del RGB
@@ -93,7 +93,6 @@ architecture Arquitectura of ParCoGli is
     SIGNAL ledRGBint :std_logic_vector (2 downto 0) := "010"; -- Del Led RGB
     signal faltaNInsulina : std_logic := '0';
     signal faltaNGlucosa : std_logic := '0';
-    signal quefalta : std_logic_vector(1 downto 0) := "00";
 
     Signal nivelInsulina, nivelGlucosa: STD_LOGIC_VECTOR (15 downto 4) := "000000000000";
     Signal resultado_int : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
@@ -148,6 +147,7 @@ architecture Arquitectura of ParCoGli is
     SIGNAL tiempoinyectoGlucosa : integer := 0;
     SIGNAL tiempoInyeccion : integer := 5; -- Supongamos que un inyector tarda unos 5 segundos en descargar su carga. Estamos simulándolo.
 
+    SIGNAL variableConfigESP : std_logic_vector(15 downto 0) := "0000000000000000"; -- Usaremos todo ceros para decir no hay comandos que recibir, es del ESP
 begin
     uut:   xadc_wiz_0 PORT MAP(
             edaddr_in,
@@ -176,25 +176,12 @@ begin
     InyectorbombaInsGlargina: inyector PORT MAP (inyectoInsGlargina, bombaInsGlargina);
     InyectorbombaInsLispro: inyector PORT MAP (inyectoInsLispro, bombaInsLispro);
     InyectorGlucosa: inyector PORT MAP (inyectoGlucosa, bombaGlucosa);
-
+    
     -- Ledes RGB, su lógica es más sencilla
-    process (sNGlargina, sNLispro, sNGlucosa) -- Consideramos si falta insulina o glucosa
+    process (sNGlargina, sNLispro, sNGlucosa, clk) -- Consideramos si falta insulina o glucosa, lo revisa periódicamente o cuando uno cambie.
+        variable queLefalta : std_logic_vector(1 downto 0);
     begin
-        if (sNGlargina = '0' OR sNLispro = '0') then
-            faltaNInsulina <= '1';
-        else
-            faltaNInsulina <= '0';
-        end if;
-        if (sNGlucosa = '0') then
-            faltaNGlucosa <= '1';
-        else
-            faltaNGlucosa <= '0';
-        end if;
-    end process;
-    process (faltaNInsulina, faltaNGlucosa) -- Actuamos en consecuencia
-    variable queLefalta : std_logic_vector(1 downto 0);
-    begin
-        queLefalta := (faltaNInsulina)&(faltaNGlucosa);
+        queLefalta := ((NOT((sNGlargina) AND (sNLispro))))&(NOT(sNGlucosa));
         case (queLefalta) is
             when "00" => ledRGBint <= "010"; -- Verde es todo correcto.
             when "01" => ledRGBint <= "001"; -- Azul es que falta glucosa en el inyector
@@ -206,6 +193,8 @@ begin
     end process;
 
     process (clk) --PROCESO RELACIONADO CON RELOJES Y TIMERS, y el nivel glucemico
+        --variable inLis : integer := 0;
+        --variable inGluc : integer := 0;
     begin
         if (rising_edge(clk)) then
             if (divisor >= 25000000) then -- Reloj central a 100 Mhz, debemos dividir tensión, 25000000 es 1 hercio
@@ -236,6 +225,28 @@ begin
                         end if;
                     tiempoinyectoInsGlargina <= tiempoinyectoInsGlargina -1;
                 end if;
+                -- Logica de inyecciones, antes fuera pero el Vivado se queja de multiply-driven si lo ponemos en otro sitio al escribir una senial en 
+                -- dos sitios 
+                if ((leoGlucosaOInsulina = 4)) then
+                    if ((nivelGlucemicoPrevio = nivelGlucemico)) then
+                    else
+                        if (nivelGlucemico = hipoglucemia) then
+                            tiempoinyectoInsLispro <= 0;
+                            tiempoinyectoGlucosa <= tiempoInyeccion;
+                        else if (nivelGlucemico = hiperglucemia) then
+                                tiempoinyectoGlucosa <= 0;
+                                if (L3 = '1') then -- No inyectar esta insulina si estamos a niveles letales
+                                    tiempoinyectoInsLispro <= tiempoInyeccion;
+                                else
+                                end if;
+                            else -- MEDIDA DE SEGURIDAD, SI NO TENEMOS NI IDEA NO INYECTES NADA
+                                tiempoinyectoInsLispro <= 0;
+                                tiempoinyectoGlucosa <= 0;
+                            end if;
+                        end if;
+                    end if;
+                else 
+                end if;
                 -- INSULINA CORTO PLAZO 
                 if (tiempoinyectoInsLispro < 1) then
                     inyectoInsLispro <= '0';
@@ -263,24 +274,10 @@ begin
             else
                 divisor <= divisor + 1;
             end if;
+        else
         end if;
-        if ((leoGlucosaOInsulina = 4)) then
-            if ((nivelGlucemicoPrevio = nivelGlucemico)) then
-            else
-                if (nivelGlucemico = hipoglucemia) then
-                    tiempoinyectoInsLispro <= 0;
-                    tiempoinyectoGlucosa <= tiempoInyeccion;
-                else if (nivelGlucemico = hiperglucemia) then
-                        tiempoinyectoInsLispro <= tiempoInyeccion;
-                        tiempoinyectoGlucosa <= 0;
-                    else -- MEDIDA DE SEGURIDAD, SI NO TENEMOS NI IDEA NO INYECTES NADA
-                        tiempoinyectoInsLispro <= 0;
-                        tiempoinyectoGlucosa <= 0;
-                    end if;
-                end if;
-            end if;
-        else 
-            end if;
+        -- LO DE ABAJO DESCOMENTARLO
+        --        
     end process;
 
     process (leoGlucosaOInsulina) --DIGO CUAL ENTRADA LEER
@@ -316,6 +313,18 @@ begin
     end process;
     process (datAdicionales)
     begin
-        -- Aquí es donde haríamos algo con esto mediante ESP-32.
+        -- Aqui es donde hariamos algo con esto mediante ESP-32.
+        -- Esto es un STUB 
+        variableConfigESP <= variableConfigESP(14 downto 0)&datAdicionales;
+        if (variableConfigESP(14) = '1') then
+           --Ejecutar accion leyendo valores establecidos por variableConfigEspecial
+           --Resetear varaible config
+           variableConfigESP <= "0000000000000000";
+           --Enviar respuesta
+           --datAdicionales <= '0';
+        else
+           --A lo mejor ejecutar otra accion
+        end if;
     end process;
+
 end Arquitectura;

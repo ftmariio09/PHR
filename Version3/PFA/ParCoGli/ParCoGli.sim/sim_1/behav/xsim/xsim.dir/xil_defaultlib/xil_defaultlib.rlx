@@ -3,10 +3,10 @@
 Oct 19 2021
 03:16:22
 C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0.vhd,1651141750,vhdl,,,,xadc_wiz_0,,,,,,,,
-C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sim_1/new/ParCoGli_Test.vhd,1651139844,vhdl,,,,parcogli_test,,,,,,,,
+C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sim_1/new/ParCoGli_Test.vhd,1651155009,vhdl,,,,parcogli_test,,,,,,,,
 C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/Comp_1.vhd,1651140554,vhdl,,,,comp_1,,,,,,,,
 C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/Comp_N_Reu.vhd,1651140610,vhdl,C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/ParCoGli.vhd,,,comp_n_reu,,,,,,,,
-C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/ParCoGli.vhd,1651144877,vhdl,C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sim_1/new/ParCoGli_Test.vhd,,,parcogli,,,,,,,,
+C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/ParCoGli.vhd,1651157211,vhdl,C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sim_1/new/ParCoGli_Test.vhd,,,parcogli,,,,,,,,
 C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/Utiles.vhd,1651140965,vhdl,C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/ParCoGli.vhd,,,utiles,,,,,,,,
 C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/encendedorBuzzy.vhd,1651140430,vhdl,C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/ParCoGli.vhd,,,encendedorbuzzy,,,,,,,,
 C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/inyector.vhd,1651140680,vhdl,C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/ParCoGli.vhd,,,inyector,,,,,,,,

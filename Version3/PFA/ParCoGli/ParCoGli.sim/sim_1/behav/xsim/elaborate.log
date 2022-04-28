@@ -4,26 +4,4 @@ Running: C:/Xilinx2021/Vivado/2021.2/bin/unwrapped/win64.o/xelab.exe --incr --de
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling package std.standard
-Compiling package std.textio
-Compiling package ieee.std_logic_1164
-Compiling package ieee.numeric_std
-Compiling package unisim.vcomponents
-Compiling package xil_defaultlib.utiles
-Compiling package ieee.std_logic_arith
-Compiling package ieee.std_logic_signed
-Compiling package ieee.vital_timing
-Compiling package ieee.vital_primitives
-Compiling package unisim.vpkg
-Compiling architecture xadc_v of entity unisim.XADC [\XADC(init_41="0100000100001111"...]
-Compiling architecture xilinx of entity xil_defaultlib.xadc_wiz_0 [xadc_wiz_0_default]
-Compiling architecture flujo of entity xil_defaultlib.Comp_1 [comp_1_default]
-Compiling architecture iterativa of entity xil_defaultlib.Comp_N_Reu [comp_n_reu_default]
-Compiling architecture behavior of entity xil_defaultlib.encendedorBuzzy [encendedorbuzzy_default]
-Compiling architecture behavior of entity xil_defaultlib.inyector [inyector_default]
-Compiling architecture arquitectura of entity xil_defaultlib.ParCoGli [parcogli_default]
-Compiling architecture testeo of entity xil_defaultlib.parcogli_test
-Built simulation snapshot ParCoGli_Test_behav
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
