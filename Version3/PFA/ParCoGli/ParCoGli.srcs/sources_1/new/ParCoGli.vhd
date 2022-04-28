@@ -38,9 +38,9 @@ entity ParCoGli is
          VpIn, VnIn, vauxp6, vauxn6, vauxp14, vauxn14 : in std_logic; -- vaux 6 es sensor insulina, vaux 14 es sensor glucosa: sGlucosa, sInsulina, 
          datAdicionales : INOUT std_logic;  --Datos adicionales -EN DESARROLLO CON LA ESP-32
          ledRGB : OUT std_logic_vector (2 downto 0);  -- Salidas del RGB
-         buzzer, bombaInsGlargina, bombaInsLispro, bombaGlucosa : OUT std_logic;  -- Salidas del Buzzer y actuadores
+         buzzer: OUT std_logic;
+         bombaInsGlargina, bombaInsLispro, bombaGlucosa : OUT std_logic_vector(3 downto 0);  -- Salidas del Buzzer y actuadores
          clk : in std_logic -- Senial de reloj
-         -- led : out std_logic_vector (11 downto 0);
         );
 end ParCoGli;
 
@@ -59,8 +59,9 @@ architecture Arquitectura of ParCoGli is
     END COMPONENT;
     component inyector
         port (
-            ent : in STD_LOGIC;
-            res : out STD_LOGIC
+            enable : in STD_LOGIC;
+            clk : in STD_LOGIC;
+            res : out STD_LOGIC_VECTOR(3 downto 0)
         );
     END COMPONENT;
     COMPONENT xadc_wiz_0
@@ -173,10 +174,10 @@ begin
     CHiper: Comp_N GENERIC MAP (tamComp) PORT MAP (nivelGlucosa, limitehiperglucemicoayunas, G_2, E_2, L_2, G2, E2, L2);
     CInsulinaLetal: Comp_N GENERIC MAP (tamComp) PORT MAP (nivelInsulina, insulinaLetal, G_3, E_3, L_3, G3, E3, L3);
     Buzzy: encendedorBuzzy PORT MAP (nivelGlucemico, buzzer, clk);
-    InyectorbombaInsGlargina: inyector PORT MAP (inyectoInsGlargina, bombaInsGlargina);
-    InyectorbombaInsLispro: inyector PORT MAP (inyectoInsLispro, bombaInsLispro);
-    InyectorGlucosa: inyector PORT MAP (inyectoGlucosa, bombaGlucosa);
-    
+    InyectorbombaInsGlargina: inyector PORT MAP (inyectoInsGlargina, clk, bombaInsGlargina);
+    InyectorbombaInsLispro: inyector PORT MAP (inyectoInsLispro, clk, bombaInsLispro);
+    InyectorGlucosa: inyector PORT MAP (inyectoGlucosa, clk, bombaGlucosa);
+
     -- Ledes RGB, su lógica es más sencilla
     process (sNGlargina, sNLispro, sNGlucosa, clk) -- Consideramos si falta insulina o glucosa, lo revisa periódicamente o cuando uno cambie.
         variable queLefalta : std_logic_vector(1 downto 0);
@@ -229,6 +230,7 @@ begin
                 -- dos sitios 
                 if ((leoGlucosaOInsulina = 4)) then
                     if ((nivelGlucemicoPrevio = nivelGlucemico)) then
+                        datAdicionales <= '1'; -- A lo mejor es útil para el futuro que pueda mantener niveles estables 
                     else
                         if (nivelGlucemico = hipoglucemia) then
                             tiempoinyectoInsLispro <= 0;
@@ -245,6 +247,7 @@ begin
                             end if;
                         end if;
                     end if;
+                    nivelGlucemicoPrevio <= nivelGlucemico;
                 else 
                 end if;
                 -- INSULINA CORTO PLAZO 
@@ -298,7 +301,7 @@ begin
     begin
         if (leoGlucosaOInsulina = 4) then
             -- Esto seria a ajustar a la medida apropiada 
-            nivelGlucemicoPrevio <= nivelGlucemico;
+            --  nivelGlucemicoPrevio <= nivelGlucemico;
             if (L = '1') then
                 nivelGlucemico <= hipoglucemia;
             else
@@ -317,11 +320,11 @@ begin
         -- Esto es un STUB 
         variableConfigESP <= variableConfigESP(14 downto 0)&datAdicionales;
         if (variableConfigESP(14) = '1') then
-           --Ejecutar accion leyendo valores establecidos por variableConfigEspecial
-           --Resetear varaible config
-           variableConfigESP <= "0000000000000000";
-           --Enviar respuesta
-           --datAdicionales <= '0';
+            --Ejecutar accion leyendo valores establecidos por variableConfigEspecial
+            --Resetear varaible config
+            variableConfigESP <= "0000000000000000";
+        --Enviar respuesta
+        --datAdicionales <= '0';
         else
            --A lo mejor ejecutar otra accion
         end if;

@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.2 (win64) Build 3367213 Tue Oct 19 02:48:09 MDT 2021
-| Date         : Thu Apr 28 16:57:21 2022
+| Date         : Thu Apr 28 19:44:49 2022
 | Host         : LAPTOP-9GJB53N6 running 64-bit major release  (build 9200)
 | Command      : report_drc -file ParCoGli_drc_routed.rpt -pb ParCoGli_drc_routed.pb -rpx ParCoGli_drc_routed.rpx
 | Design       : ParCoGli
@@ -24,12 +24,13 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 4
+             Violations found: 5
 +----------+----------+-----------------------------------------------------+------------+
 | Rule     | Severity | Description                                         | Violations |
 +----------+----------+-----------------------------------------------------+------------+
 | CFGBVS-1 | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
 | PDRC-153 | Warning  | Gated clock check                                   | 3          |
+| RPBF-3   | Warning  | IO port buffering is incomplete                     | 1          |
 +----------+----------+-----------------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -49,7 +50,7 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net nivelGlucemicoPrevio__0 is a gated clock net sourced by a combinational pin nivelGlucemico_reg[1]_i_2/O, cell nivelGlucemico_reg[1]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net nivelGlucemicoPrevio is a gated clock net sourced by a combinational pin nivelGlucemico_reg[1]_i_2/O, cell nivelGlucemico_reg[1]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
@@ -60,6 +61,11 @@ Related violations: <none>
 PDRC-153#3 Warning
 Gated clock check  
 Net nivelInsulina_reg[15]_i_1_n_0 is a gated clock net sourced by a combinational pin nivelInsulina_reg[15]_i_1/O, cell nivelInsulina_reg[15]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+RPBF-3#1 Warning
+IO port buffering is incomplete  
+Device port datAdicionales expects both input and output buffering but the buffers are incomplete.
 Related violations: <none>
 
 

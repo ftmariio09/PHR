@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.2 (win64) Build 3367213 Tue Oct 19 02:48:09 MDT 2021
-| Date         : Thu Apr 28 16:57:22 2022
+| Date         : Thu Apr 28 19:44:50 2022
 | Host         : LAPTOP-9GJB53N6 running 64-bit major release  (build 9200)
 | Command      : report_bus_skew -warn_on_violation -file ParCoGli_bus_skew_routed.rpt -pb ParCoGli_bus_skew_routed.pb -rpx ParCoGli_bus_skew_routed.rpx
 | Design       : ParCoGli

@@ -2,8 +2,8 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Thu Apr 28 16:55:08 2022
-# Process ID: 3572
+# Start of session at: Thu Apr 28 19:43:01 2022
+# Process ID: 10172
 # Current directory: C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.runs/synth_1
 # Command line: vivado.exe -log ParCoGli.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ParCoGli.tcl
 # Log file: C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.runs/synth_1/ParCoGli.vds
