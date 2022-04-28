@@ -62,9 +62,26 @@ begin
         for i in 0 to 127 loop
             wait for 50 ns;
             clk <= '0';
-
-            wait for 10 ns;
+            wait for 50 ns;
             clk <= '1';
+        end loop;
+    end process;
+    process
+        variable i : integer := 0;
+    begin
+        for i in 0 to 127 loop
+            wait for 20 ns;
+            glargina <= '0';
+            wait for 20 ns;
+            glucosa <= '0';
+            wait for 20 ns;
+            lispro <= '0';
+            wait for 20 ns;
+            glucosa <= '1';
+            wait for 20 ns;
+            glargina <= '1';
+            wait for 20 ns;
+            lispro <= '1';
         end loop;
     end process;
 end Testeo;

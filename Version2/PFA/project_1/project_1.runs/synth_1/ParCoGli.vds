@@ -2,8 +2,8 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Thu Apr 28 10:26:16 2022
-# Process ID: 2188
+# Start of session at: Thu Apr 28 11:47:50 2022
+# Process ID: 27384
 # Current directory: C:/PracticasVHDL/github/PHR/Version2/PFA/project_1/project_1.runs/synth_1
 # Command line: vivado.exe -log ParCoGli.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ParCoGli.tcl
 # Log file: C:/PracticasVHDL/github/PHR/Version2/PFA/project_1/project_1.runs/synth_1/ParCoGli.vds
@@ -12,4 +12,4 @@
 #-----------------------------------------------------------
 source ParCoGli.tcl -notrace
 ERROR: [Common 17-165] Too many positional options when parsing 'Reconfigurable/PFA/github/PHR/Version2/PFA/project_1/project_1.srcs/utils_1/imports/synth_1/ParCoGli.dcp', please type 'read_checkpoint -help' for usage info.
-INFO: [Common 17-206] Exiting Vivado at Thu Apr 28 10:26:22 2022...
+INFO: [Common 17-206] Exiting Vivado at Thu Apr 28 11:47:57 2022...

@@ -97,7 +97,7 @@ architecture Arquitectura of ParCoGli is
     SIGNAL tiempoinyectoGlucosa : integer := 0;
     SIGNAL tiempoInyeccion : integer := 5; -- Supongamos que un inyector tarda unos 5 segundos en descargar su carga. Estamos simulándolo.
 
-    SIGNAL ledRGBint :std_logic_vector (2 downto 0) := "000"; -- Del Led RGB
+    SIGNAL ledRGBint :std_logic_vector (2 downto 0) := "010"; -- Del Led RGB
     signal faltaNInsulina : std_logic := '0';
     signal faltaNGlucosa : std_logic := '0';
     signal quefalta : std_logic_vector(1 downto 0) := "00";
@@ -178,139 +178,149 @@ begin
     InyectorbombaInsLispro: inyector PORT MAP (inyectoInsLispro, bombaInsLispro);
     InyectorGlucosa: inyector PORT MAP (inyectoGlucosa, bombaGlucosa);
 
-    process (clk, nivelGlucemico) --PROCESO RELACIONADO CON RELOJES Y TIMERS, y el nivel glucémico
-    begin
-        if (rising_edge(clk)) then
-            if (divisor >= 25000000) then -- Reloj central a 100 Mhz, debemos dividir tensión, 25000000 es 1 hercio
-                if (leoGlucosaOInsulina < 5) then -- Para ignorar las dos primeras lecturas
-                    leoGlucosaOInsulina <= leoGlucosaOInsulina +1;
-                else
-                    leoGlucosaOInsulina <= 2;
-                end if;
-                divisor <= 0;
-                -- INYECCIONES 
-                -- INSULINA LARGO PLAZO
-                if (segundos >= unDia) then -- Cada día
-                    tiempoinyectoInsGlargina <= tiempoInyeccion;
-                    segundos <= 0;
-                else
-                    segundos <= segundos + 1;
-                end if;
-                if (tiempoinyectoInsGlargina < 1) then
-                    inyectoInsGlargina <= '0';
-                else
-                    if (inyectoInsGlargina = '0') then
-                        if (L3 = '0') then -- Inyecto insulina de corto plazo si no estamos en niveles letales
-                            inyectoInsGlargina <= '0';
-                        else
-                            inyectoInsGlargina <= '1';
-                        end if;
-                    else  
-                    end if;
-                    tiempoinyectoInsGlargina <= tiempoinyectoInsGlargina -1;
-                end if;
-                -- INSULINA CORTO PLAZO 
-                if (tiempoinyectoInsLispro < 1) then
-                    inyectoInsLispro <= '0';
-                else
-                    if (inyectoInsLispro = '0') then
-                        if (L3 = '0') then -- Inyecto insulina de corto plazo si no estamos en niveles letales
-                            inyectoInsLispro <= '0';
-                        else
-                            inyectoInsLispro <= '1';
-                        end if;
-                    else
-                    end if;
-                    tiempoinyectoInsLispro <= tiempoinyectoInsLispro -1;
-                end if;
-                -- GLUCOSA
-                if (tiempoinyectoGlucosa < 1) then
-                    inyectoGlucosa <= '0';
-                else
-                    if (inyectoGlucosa = '0') then
-                        inyectoGlucosa <= '1';
-                    else
-                    end if;
-                    tiempoinyectoGlucosa <= tiempoinyectoGlucosa -1;
-                end if;
-            else
-                divisor <= divisor + 1;
-            end if;
-        end if;
-        if ((leoGlucosaOInsulina = 4)) then -- /= es equivalente al != en VHDL (leoGlucosaOInsulina = 4) AND (nivelGlucemicoPrevio /= nivelGlucemico)
-            if ((nivelGlucemicoPrevio = nivelGlucemico)) then
-            else
-                if (nivelGlucemico = hipoglucemia) then
-                    tiempoinyectoInsLispro <= 0;
-                    tiempoinyectoGlucosa <= tiempoInyeccion;
-                else if (nivelGlucemico = hiperglucemia) then
-                        tiempoinyectoInsLispro <= tiempoInyeccion;
-                        tiempoinyectoGlucosa <= 0;
-                    else -- MEDIDA DE SEGURIDAD, SI NO TENEMOS NI IDEA NO INYECTES NADA
-                        tiempoinyectoInsLispro <= 0;
-                        tiempoinyectoGlucosa <= 0;
-                    end if;
-                end if;
-            end if;
-        else 
-        end if;
-
-    end process;
-
-    process (leoGlucosaOInsulina) --DIGO CUÁL ENTRADA LEER
-    begin
-        if (leoGlucosaOInsulina = 2) then -- Leo insulina
-            edaddr_in <= e16daddr_in;
-            nivelInsulina <= resultado_int(15 DOWNTO 4);
-        else if (leoGlucosaOInsulina = 3) then -- Leo glucosa
-                edaddr_in <= e1Edaddr_in;
-                nivelGlucosa <= resultado_int(15 DOWNTO 4);
-            else
-        end if;
-        end if;
-    end process;
-    -- POR HACER: FILTRO DE KALMANN
-    -- Esto en teoría es un sistema de control
-    process (leoGlucosaOInsulina) -- ANÁLISIS DEL PACIENTE
-    begin
-        if (leoGlucosaOInsulina = 4) then
-            -- Esto sería a ajustar a la medida apropiada 
-            nivelGlucemicoPrevio <= nivelGlucemico;
-            if (L = '1') then
-                nivelGlucemico <= hipoglucemia;
-            else
-                if (L2 = '1') then
-                    nivelGlucemico <= hiperglucemia;
-                else
-                    nivelGlucemico <= normal;
-                end if;
-            end if;
-        else
-        end if;
-    end process;
-    --    process (nivelGlucemico) -- Inyectar la sustancia adecuada segun señal. SUPONEMOS QUE INYECTAR UNA PRIMERA VEZ LO ARREGLA
+    --    process (clk, nivelGlucemico) --PROCESO RELACIONADO CON RELOJES Y TIMERS, y el nivel glucemico
     --    begin
+    --        if (rising_edge(clk)) then
+    --            if (divisor >= 25000000) then -- Reloj central a 100 Mhz, debemos dividir tensión, 25000000 es 1 hercio
+    --                if (leoGlucosaOInsulina < 5) then -- Para ignorar las dos primeras lecturas
+    --                    leoGlucosaOInsulina <= leoGlucosaOInsulina +1;
+    --                else
+    --                    leoGlucosaOInsulina <= 2;
+    --                end if;
+    --                divisor <= 0;
+    --                -- INYECCIONES 
+    --                -- INSULINA LARGO PLAZO
+    --                if (segundos >= unDia) then -- Cada dia
+    --                    tiempoinyectoInsGlargina <= tiempoInyeccion;
+    --                    segundos <= 0;
+    --                else
+    --                    segundos <= segundos + 1;
+    --                end if;
+    --                if (tiempoinyectoInsGlargina < 1) then
+    --                    inyectoInsGlargina <= '0';
+    --                else
+    --                    if (inyectoInsGlargina = '0') then
+    --                        if (L3 = '0') then -- Inyecto insulina de corto plazo si no estamos en niveles letales
+    --                            inyectoInsGlargina <= '0';
+    --                        else
+    --                            inyectoInsGlargina <= '1';
+    --                        end if;
+    --                    else  
+    --                    end if;
+    --                    tiempoinyectoInsGlargina <= tiempoinyectoInsGlargina -1;
+    --                end if;
+    --                -- INSULINA CORTO PLAZO 
+    --                if (tiempoinyectoInsLispro < 1) then
+    --                    inyectoInsLispro <= '0';
+    --                else
+    --                    if (inyectoInsLispro = '0') then
+    --                        if (L3 = '0') then -- Inyecto insulina de corto plazo si no estamos en niveles letales
+    --                            inyectoInsLispro <= '0';
+    --                        else
+    --                            inyectoInsLispro <= '1';
+    --                        end if;
+    --                    else
+    --                    end if;
+    --                    tiempoinyectoInsLispro <= tiempoinyectoInsLispro -1;
+    --                end if;
+    --                -- GLUCOSA
+    --                if (tiempoinyectoGlucosa < 1) then
+    --                    inyectoGlucosa <= '0';
+    --                else
+    --                    if (inyectoGlucosa = '0') then
+    --                        inyectoGlucosa <= '1';
+    --                    else
+    --                    end if;
+    --                    tiempoinyectoGlucosa <= tiempoinyectoGlucosa -1;
+    --                end if;
+    --            else
+    --                divisor <= divisor + 1;
+    --            end if;
+    --        end if;
+    --        if ((leoGlucosaOInsulina = 4)) then 
+    --            if ((nivelGlucemicoPrevio = nivelGlucemico)) then
+    --            else
+    --                if (nivelGlucemico = hipoglucemia) then
+    --                    tiempoinyectoInsLispro <= 0;
+    --                    tiempoinyectoGlucosa <= tiempoInyeccion;
+    --                else if (nivelGlucemico = hiperglucemia) then
+    --                        tiempoinyectoInsLispro <= tiempoInyeccion;
+    --                        tiempoinyectoGlucosa <= 0;
+    --                    else -- MEDIDA DE SEGURIDAD, SI NO TENEMOS NI IDEA NO INYECTES NADA
+    --                        tiempoinyectoInsLispro <= 0;
+    --                        tiempoinyectoGlucosa <= 0;
+    --                    end if;
+    --                end if;
+    --            end if;
+    --        else 
+    --        end if;
 
     --    end process;
 
-    --    process
+    --    process (leoGlucosaOInsulina) --DIGO CUAL ENTRADA LEER
     --    begin
+    --        if (leoGlucosaOInsulina = 2) then -- Leo insulina
+    --            edaddr_in <= e16daddr_in;
+    --            nivelInsulina <= resultado_int(15 DOWNTO 4);
+    --        else if (leoGlucosaOInsulina = 3) then -- Leo glucosa
+    --                edaddr_in <= e1Edaddr_in;
+    --                nivelGlucosa <= resultado_int(15 DOWNTO 4);
+    --            else
+    --        end if;
+    --        end if;
     --    end process;
+    --    -- POR HACER: FILTRO DE KALMANN
+    --    -- Esto en teoría es un sistema de control
+    --    process (leoGlucosaOInsulina) -- ANALISIS DEL PACIENTE
+    --    begin
+    --        if (leoGlucosaOInsulina = 4) then
+    --            -- Esto seria a ajustar a la medida apropiada 
+    --            nivelGlucemicoPrevio <= nivelGlucemico;
+    --            if (L = '1') then
+    --                nivelGlucemico <= hipoglucemia;
+    --            else
+    --                if (L2 = '1') then
+    --                    nivelGlucemico <= hiperglucemia;
+    --                else
+    --                    nivelGlucemico <= normal;
+    --                end if;
+    --            end if;
+    --        else
+    --        end if;
+    --    end process;
+    --    --    process (nivelGlucemico) -- Inyectar la sustancia adecuada segun señal. SUPONEMOS QUE INYECTAR UNA PRIMERA VEZ LO ARREGLA
+    --    --    begin
+
+    --    --    end process;
+
+    --    --    process
+    --    --    begin
+    --    --    end process;
     process (sNGlargina, sNLispro, sNGlucosa)
     begin
-        if (sNGlargina = '0' OR sNLispro = '0') then
-            faltaNInsulina <= '1'; -- Rojo es que falta insulina en los inyectores
-        else
-            faltaNInsulina <= '0';
-        end if;
+        --        faltaNInsulina <= '0';
+        --        ledRGBint(1) <= '1'; -- Verde es que todo va bien
+        --        if (sNGlargina = '0' OR sNLispro = '0') then
+        --            faltaNInsulina <= '1'; -- Rojo es que falta insulina en los inyectores
+        --            ledRGBint(1) <= '0';
+        --            ledRGBint(0) <= '1';
+        --        else 
+        --        end if;
+        --        if (sNGlucosa = '0') then
+        --            faltaNGlucosa <= '1'; -- Azul es que falta insulina en los inyectores
+        --            ledRGBint(1) <= '0';
+        --            ledRGBint(2) <= '1';
+        --        else 
+        --        end if;
+        --        if (faltaNGlucosa = '0' AND faltaNInsulina <= '0') then
+        --            ledRGBint(1) <= '1';
+        --        else
+        --        end if;
         if (sNGlucosa = '0') then
             faltaNGlucosa <= '1';  -- Azul es que falta glucosa en el inyector
         else
             faltaNGlucosa <= '0';
         end if;
-        if (sNGlucosa = '0') then
-        else
-    end if;
         quefalta <= ((faltaNInsulina)&(faltaNGlucosa));
         case quefalta is
             when "00" => ledRGBint <= "010";
