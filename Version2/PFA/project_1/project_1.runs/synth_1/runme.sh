@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/ASL/Universidad/3er curso/Programacion de HW Reconfigurable/PFA/github/PHR/Version2/PFA/project_1/project_1.runs/synth_1'
+HD_PWD='C:/PracticasVHDL/github/PHR/Version2/PFA/project_1/project_1.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

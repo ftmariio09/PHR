@@ -73,6 +73,7 @@ architecture Arquitectura of ParCoGli is
 
     constant tamComp : natural := 12;
 
+    Signal nivelGlucemicoPrevio : STD_LOGIC_VECTOR (1 downto 0) := "01"; -- Para que siempre sea diferente la primera vez
     Signal nivelGlucemico : STD_LOGIC_VECTOR (1 downto 0) := "00";
     constant hipoglucemia : STD_LOGIC_VECTOR (1 downto 0) := "11";
     constant normal : STD_LOGIC_VECTOR (1 downto 0) := "00";
@@ -96,6 +97,10 @@ architecture Arquitectura of ParCoGli is
     SIGNAL tiempoinyectoGlucosa : integer := 0;
     SIGNAL tiempoInyeccion : integer := 5; -- Supongamos que un inyector tarda unos 5 segundos en descargar su carga. Estamos simulándolo.
 
+    SIGNAL ledRGBint :std_logic_vector (2 downto 0) := "000"; -- Del Led RGB
+    signal faltaNInsulina : std_logic := '0';
+    signal faltaNGlucosa : std_logic := '0';
+    signal quefalta : std_logic_vector(1 downto 0) := "00";
     -- POR HACER
     COMPONENT xadc_wiz_0
         port(
@@ -173,7 +178,7 @@ begin
     InyectorbombaInsLispro: inyector PORT MAP (inyectoInsLispro, bombaInsLispro);
     InyectorGlucosa: inyector PORT MAP (inyectoGlucosa, bombaGlucosa);
 
-    process (clk) --PROCESO RELACIONADO CON RELOJES Y TIMERS
+    process (clk, nivelGlucemico) --PROCESO RELACIONADO CON RELOJES Y TIMERS, y el nivel glucémico
     begin
         if (rising_edge(clk)) then
             if (divisor >= 25000000) then -- Reloj central a 100 Mhz, debemos dividir tensión, 25000000 es 1 hercio
@@ -232,6 +237,24 @@ begin
                 divisor <= divisor + 1;
             end if;
         end if;
+        if ((leoGlucosaOInsulina = 4)) then -- /= es equivalente al != en VHDL (leoGlucosaOInsulina = 4) AND (nivelGlucemicoPrevio /= nivelGlucemico)
+            if ((nivelGlucemicoPrevio = nivelGlucemico)) then
+            else
+                if (nivelGlucemico = hipoglucemia) then
+                    tiempoinyectoInsLispro <= 0;
+                    tiempoinyectoGlucosa <= tiempoInyeccion;
+                else if (nivelGlucemico = hiperglucemia) then
+                        tiempoinyectoInsLispro <= tiempoInyeccion;
+                        tiempoinyectoGlucosa <= 0;
+                    else -- MEDIDA DE SEGURIDAD, SI NO TENEMOS NI IDEA NO INYECTES NADA
+                        tiempoinyectoInsLispro <= 0;
+                        tiempoinyectoGlucosa <= 0;
+                    end if;
+                end if;
+            end if;
+        else 
+        end if;
+
     end process;
 
     process (leoGlucosaOInsulina) --DIGO CUÁL ENTRADA LEER
@@ -252,6 +275,7 @@ begin
     begin
         if (leoGlucosaOInsulina = 4) then
             -- Esto sería a ajustar a la medida apropiada 
+            nivelGlucemicoPrevio <= nivelGlucemico;
             if (L = '1') then
                 nivelGlucemico <= hipoglucemia;
             else
@@ -264,23 +288,37 @@ begin
         else
         end if;
     end process;
-    process (nivelGlucemico) -- Inyectar la sustancia adecuada segun señal. SUPONEMOS QUE INYECTAR UNA PRIMERA VEZ LO ARREGLA
+    --    process (nivelGlucemico) -- Inyectar la sustancia adecuada segun señal. SUPONEMOS QUE INYECTAR UNA PRIMERA VEZ LO ARREGLA
+    --    begin
+
+    --    end process;
+
+    --    process
+    --    begin
+    --    end process;
+    process (sNGlargina, sNLispro, sNGlucosa)
     begin
-        if (nivelGlucemico = hipoglucemia) then
-            tiempoinyectoInsLispro <= 0;
-            tiempoinyectoGlucosa <= tiempoInyeccion;
-        else if (nivelGlucemico = hiperglucemia) then
-                tiempoinyectoInsLispro <= tiempoInyeccion;
-                tiempoinyectoGlucosa <= 0;
-            else -- MEDIDA DE SEGURIDAD, SI NO TENEMOS NI IDEA NO INYECTES NADA
-                tiempoinyectoInsLispro <= 0;
-                tiempoinyectoGlucosa <= 0;
-            end if;
+        if (sNGlargina = '0' OR sNLispro = '0') then
+            faltaNInsulina <= '1'; -- Rojo es que falta insulina en los inyectores
+        else
+            faltaNInsulina <= '0';
         end if;
+        if (sNGlucosa = '0') then
+            faltaNGlucosa <= '1';  -- Azul es que falta glucosa en el inyector
+        else
+            faltaNGlucosa <= '0';
+        end if;
+        if (sNGlucosa = '0') then
+        else
+    end if;
+        quefalta <= ((faltaNInsulina)&(faltaNGlucosa));
+        case quefalta is
+            when "00" => ledRGBint <= "010";
+            when "01" => ledRGBint <= "001";
+            when "10" => ledRGBint <= "100";
+            when "11" => ledRGBint <= "101";
+            when others => ledRGBint <= "111";
+        end case;
+        ledRGB <= ledRGBint;
     end process;
-
-    process
-    begin
-    end process;
-
 end Arquitectura;
