@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/user2/Desktop/LedSimple/LedSimple.srcs/sources_1/imports/Tutorial/tutorial.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'encendedorLed'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/user2/Desktop/LedSimple/LedSimple.srcs/sim_1/imports/Tutorial/tutorial_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tutorial_tb'

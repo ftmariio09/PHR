@@ -1,0 +1,17 @@
+Time resolution is 1 ps
+LED output MATCHED at 1. Expected: 0 Actual: 0
+LED output MATCHED at 1. Expected: 0 Actual: 0
+LED output mis-matched at 2. Expected: 1 Actual: 0
+LED output mis-matched at 2. Expected: 1 Actual: 0
+LED output MATCHED at 3. Expected: 0 Actual: 0
+LED output MATCHED at 3. Expected: 0 Actual: 0
+LED output mis-matched at 4. Expected: 1 Actual: 0
+LED output mis-matched at 4. Expected: 1 Actual: 0
+LED output MATCHED at 5. Expected: 0 Actual: 0
+LED output MATCHED at 5. Expected: 0 Actual: 0
+LED output mis-matched at 6. Expected: 1 Actual: 0
+LED output mis-matched at 6. Expected: 1 Actual: 0
+LED output MATCHED at 7. Expected: 0 Actual: 0
+LED output MATCHED at 7. Expected: 0 Actual: 0
+LED output mis-matched at 8. Expected: 1 Actual: 0
+LED output mis-matched at 8. Expected: 1 Actual: 0

@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Tue Apr  5 15:19:52 2022
+# Process ID: 3872
+# Current directory: C:/Users/user2/Desktop/LedSimple/LedSimple.runs/impl_1
+# Command line: vivado.exe -log encendedorLed.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source encendedorLed.tcl -notrace
+# Log file: C:/Users/user2/Desktop/LedSimple/LedSimple.runs/impl_1/encendedorLed.vdi
+# Journal file: C:/Users/user2/Desktop/LedSimple/LedSimple.runs/impl_1\vivado.jou
+# Running On: funda8, OS: Windows, CPU Frequency: 3192 MHz, CPU Physical cores: 4, Host memory: 17054 MB
+#-----------------------------------------------------------
+source encendedorLed.tcl -notrace

@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../PraLED.srcs/sources_1/imports/tutorial.srcs/sources_1/imports/Tutorial/tutorial.vhd" \
+"../../../../PraLED.srcs/sim_1/imports/Tutorial/tutorial_tb.vhd" \
+
+# Do not sort compile order
+nosort
