@@ -36,7 +36,7 @@ Architecture behavior of inyector Is
 
     Signal estado : STD_LOGIC_VECTOR (3 downto 0) := "1000";
     Signal estado_anterior : STD_LOGIC_VECTOR (3 downto 0) := "1000";
-    constant frecuencia : integer := 25000000; -- Frecuencia de rotacion, 25 millones para nuestro reloj es un cuarto de hercio
+    constant frecuencia : integer := 8000000; -- Frecuencia de rotacion, 25 millones para nuestro reloj es un cuarto de hercio
     Signal divisor : integer := 0;
 
 begin

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1651167837">
-  <File Type="OPT-HWDEF" Name="ParCoGli.hwdef"/>
-  <File Type="ROUTE-BUS-SKEW" Name="ParCoGli_bus_skew_routed.rpt"/>
-  <File Type="PA-DCP" Name="ParCoGli.dcp"/>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1651674166">
   <File Type="ROUTE-PWR" Name="ParCoGli_power_routed.rpt"/>
   <File Type="PA-TCL" Name="ParCoGli.tcl"/>
   <File Type="BITSTR-MMI" Name="ParCoGli.mmi"/>
@@ -13,6 +10,7 @@
   <File Type="OPT-TIMING" Name="ParCoGli_timing_summary_opted.rpt"/>
   <File Type="OPT-DCP" Name="ParCoGli_opt.dcp"/>
   <File Type="OPT-DRC" Name="ParCoGli_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="ParCoGli.hwdef"/>
   <File Type="PWROPT-DCP" Name="ParCoGli_pwropt.dcp"/>
   <File Type="PWROPT-DRC" Name="ParCoGli_drc_pwropted.rpt"/>
   <File Type="PWROPT-TIMING" Name="ParCoGli_timing_summary_pwropted.rpt"/>
@@ -50,6 +48,7 @@
   <File Type="ROUTE-TIMING-RPX" Name="ParCoGli_timing_summary_routed.rpx"/>
   <File Type="ROUTE-SIMILARITY" Name="ParCoGli_incremental_reuse_routed.rpt"/>
   <File Type="ROUTE-CLK" Name="ParCoGli_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="ParCoGli_bus_skew_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="ParCoGli_bus_skew_routed.pb"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="ParCoGli_bus_skew_routed.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="ParCoGli_postroute_physopt.dcp"/>

@@ -108,47 +108,50 @@ architecture Arquitectura of ParCoGli is
     -- Esto va de 00h a 3Fh son registros de solo lectura, de un total de 00h a 7Fh
     -- 
     -- Para mas información, ver paginas 39 a 39 de https://docs.xilinx.com/v/u/en-US/ug480_7Series_XADC
-    Signal e16daddr_in : STD_LOGIC_VECTOR (6 downto 0) := "0010110"; -- Son la MUX_address.
-    Signal e1Edaddr_in : STD_LOGIC_VECTOR (6 downto 0) := "0011110"; -- Son la MUX_address.
-    Signal eden_in: STD_LOGIC:='1';
+    Signal e16daddr_in : STD_LOGIC_VECTOR (6 downto 0) := "0010110"; -- Son la MUX_address, es el del vauxp6
+    Signal e1Edaddr_in : STD_LOGIC_VECTOR (6 downto 0) := "0011110"; -- Son la MUX_address, es el del vauxp14
+    Signal eden_in: STD_LOGIC:='1'; -- Lo de abajo son mas parametros para el modulo XADC
     Signal edrdy_out: STD_LOGIC;
     Signal edwe_in : STD_LOGIC := '0';
     Signal echannel_out : STD_LOGIC_VECTOR (4 downto 0);
     Signal terminadoSec : STD_LOGIC := '0';
     Signal terminadoConv : STD_LOGIC := '0';
-    Signal ereset_in : STD_LOGIC := '0';
-    Signal ocupado, alarma : std_logic;
-    Signal divisor : integer :=0;
-    Signal leoGlucosaOInsulina : integer := 0;
+    Signal ereset_in : STD_LOGIC := '0'; -- Senial reseteo XADC
+    Signal ocupado, alarma : std_logic; -- Seniales de ocupado y alarma
+    
+    Signal divisor : integer :=0; -- Divisor de frecuencias
+    Signal leoGlucosaOInsulina : integer := 0; -- A pesar de su nombre, tambien se usa para saber en que fase del cicl oestamos
 
-    constant tamComp : natural := 12;
+    Signal nivelGlucemicoPrevio : STD_LOGIC_VECTOR (1 downto 0) := "01"; -- Para que siempre sea diferente la primera vez tiene el valor 01, lectura anterior del nivel glucemico.
+    Signal nivelGlucemico : STD_LOGIC_VECTOR (1 downto 0) := "00"; -- Nivel glucemico que la ultima lectura ha dado.
+    constant hipoglucemia : STD_LOGIC_VECTOR (1 downto 0) := "11"; -- Almacenamos estas constantes para saber que es hiperglucemia,
+    constant normal : STD_LOGIC_VECTOR (1 downto 0) := "00"; -- hipoglucemia
+    constant hiperglucemia : STD_LOGIC_VECTOR (1 downto 0) := "10"; -- o estado habitual.
 
-    Signal nivelGlucemicoPrevio : STD_LOGIC_VECTOR (1 downto 0) := "01"; -- Para que siempre sea diferente la primera vez
-    Signal nivelGlucemico : STD_LOGIC_VECTOR (1 downto 0) := "00";
-    constant hipoglucemia : STD_LOGIC_VECTOR (1 downto 0) := "11";
-    constant normal : STD_LOGIC_VECTOR (1 downto 0) := "00";
-    constant hiperglucemia : STD_LOGIC_VECTOR (1 downto 0) := "10";
+    constant tamComp : natural := 12; -- Utilizado para poder traducir enteros en forma decimal a forma binaria de tamComp bits
 
-    constant limitehipoglucemico : STD_LOGIC_VECTOR (15 downto 4) := ent2bin(71, tamComp);
-    constant limitehiperglucemicoayunas : STD_LOGIC_VECTOR (15 downto 4) := ent2bin(99, tamComp);
-    constant limitehiperglucemicocomidas : STD_LOGIC_VECTOR (15 downto 4) := ent2bin(199, tamComp);
-    constant insulinaLetal : STD_LOGIC_VECTOR (15 downto 4) := ent2bin(15, tamComp); -- No inyectar insulina si la insulian ya está por encima de 15 en sangre, podría ser letal.
+    constant limitehipoglucemico : STD_LOGIC_VECTOR (15 downto 4) := ent2bin(71, tamComp); -- <70 mg por dl es hipoglucemia
+    constant limitehiperglucemicoayunas : STD_LOGIC_VECTOR (15 downto 4) := ent2bin(99, tamComp); -- >100 mg por dl es hiperglucemia en ayunas
+    constant limitehiperglucemicocomidas : STD_LOGIC_VECTOR (15 downto 4) := ent2bin(199, tamComp); -- >200 mg por dl es hiperglucemia tras las comidas
+    constant insulinaLetal : STD_LOGIC_VECTOR (15 downto 4) := ent2bin(15, tamComp); -- No inyectar insulina si la insulina ya está por encima de 15 en sangre, podría ser letal.
 
     SIGNAL G_1, E_1, L_1, G_2, E_2, L_2, G_3, E_3, L_3: STD_LOGIC := '0';
-    SIGNAL G, E, L: STD_LOGIC; -- Hipoglucemia
-    SIGNAL G2, E2, L2: STD_LOGIC; -- Hiperglucemia
-    SIGNAL G3, E3, L3: STD_LOGIC; -- Insulina Letal
-    SIGNAL unDia : integer := 86400; -- Para la siguiente inyeccion de glargina
-    SIGNAL segundos : integer; -- Cuenta segundos hasta siguiente inyeccion de signal
-    SIGNAL inyectoGlucosa : STD_LOGIC := '0';
-    SIGNAL inyectoInsGlargina : STD_LOGIC := '0';
-    SIGNAL inyectoInsLispro : STD_LOGIC := '0';
-    SIGNAL tiempoinyectoInsGlargina : integer := 0;
-    SIGNAL tiempoinyectoInsLispro : integer := 0;
-    SIGNAL tiempoinyectoGlucosa : integer := 0;
+    SIGNAL G, E, L: STD_LOGIC; -- Para el comparador de hipoglucemia
+    SIGNAL G2, E2, L2: STD_LOGIC; -- Para el comaprador de hiperglucemia
+    SIGNAL G3, E3, L3: STD_LOGIC; -- Para el comaprador de insulina Letal
+    SIGNAL unDia : integer := 86400; -- Tiempo entre inyecciones de glargina
+    SIGNAL segundos : integer; -- Cuenta segundos hasta siguiente inyeccion de glargina
+    SIGNAL inyectoGlucosa : STD_LOGIC := '0'; -- Enable para inyector de glucosa
+    SIGNAL inyectoInsGlargina : STD_LOGIC := '0'; -- Enable para inyector de insulina de accion rapida
+    SIGNAL inyectoInsLispro : STD_LOGIC := '0'; -- Enable para inyector de insulina de accion lenta
+    SIGNAL tiempoinyectoInsGlargina : integer := 0; -- Tiempo que debo estar inyectando insulina lenta
+    SIGNAL tiempoinyectoInsLispro : integer := 0; -- Tiempo que debo estar inyectando insulina rapida
+    SIGNAL tiempoinyectoGlucosa : integer := 0; -- Tiempo que debo estar inyectando glucosa
     SIGNAL tiempoInyeccion : integer := 5; -- Supongamos que un inyector tarda unos 5 segundos en descargar su carga. Estamos simulándolo.
 
     SIGNAL variableConfigESP : std_logic_vector(15 downto 0) := "0000000000000000"; -- Usaremos todo ceros para decir no hay comandos que recibir, es del ESP
+    
+    SIGNAL errorFases : STD_LOGIC := '0'; -- En un futuro, para informar de un tipo de error.
 begin
     uut:   xadc_wiz_0 PORT MAP(
             edaddr_in,
@@ -171,73 +174,72 @@ begin
             VpIn,
             VnIn);
     CHipo: Comp_N GENERIC MAP (12) PORT MAP (nivelGlucosa, limitehipoglucemico, G_1, E_1, L_1, G, E, L);
-    CHiper: Comp_N GENERIC MAP (tamComp) PORT MAP (nivelGlucosa, limitehiperglucemicoayunas, G_2, E_2, L_2, G2, E2, L2);
+    CHiper: Comp_N GENERIC MAP (tamComp) PORT MAP (limitehiperglucemicoayunas, nivelGlucosa, G_2, E_2, L_2, G2, E2, L2);
     CInsulinaLetal: Comp_N GENERIC MAP (tamComp) PORT MAP (nivelInsulina, insulinaLetal, G_3, E_3, L_3, G3, E3, L3);
     Buzzy: encendedorBuzzy PORT MAP (nivelGlucemico, buzzer, clk);
     InyectorbombaInsGlargina: inyector PORT MAP (inyectoInsGlargina, clk, bombaInsGlargina);
     InyectorbombaInsLispro: inyector PORT MAP (inyectoInsLispro, clk, bombaInsLispro);
     InyectorGlucosa: inyector PORT MAP (inyectoGlucosa, clk, bombaGlucosa);
 
-    -- Ledes RGB, su lógica es más sencilla
-    process (sNGlargina, sNLispro, sNGlucosa, clk) -- Consideramos si falta insulina o glucosa, lo revisa periódicamente o cuando uno cambie.
-        variable queLefalta : std_logic_vector(1 downto 0);
+    
+    process (sNGlargina, sNLispro, sNGlucosa, clk) -- PROCESO RELACIONADO CON LEDES RGB
+        variable queLefalta : std_logic_vector(1 downto 0); -- Consideramos si falta insulina o glucosa, lo revisa periódicamente o cuando uno cambie.
     begin
         queLefalta := ((NOT((sNGlargina) AND (sNLispro))))&(NOT(sNGlucosa));
         case (queLefalta) is
             when "00" => ledRGBint <= "010"; -- Verde es todo correcto.
             when "01" => ledRGBint <= "001"; -- Azul es que falta glucosa en el inyector
-            when "10" => ledRGBint <= "100"; -- Rojo es que falta insulina en el inyector
+            when "10" => ledRGBint <= "100"; -- Rojo es que falta insulina (de cualquier tipo) en el inyector
             when "11" => ledRGBint <= "101"; -- Morado es que faltan insulina y glucosa en inyector
             when others => ledRGBint <= "111"; -- Color blanco es mensaje de error
         end case;
-        ledRGB <= ledRGBint;
+        ledRGB <= ledRGBint; -- Pasar valor al ledRGB
     end process;
 
-    process (clk) --PROCESO RELACIONADO CON RELOJES Y TIMERS, y el nivel glucemico
-        --variable inLis : integer := 0;
-        --variable inGluc : integer := 0;
+    process (clk) --PROCESO RELACIONADO CON RELOJES Y TIMERS
     begin
         if (rising_edge(clk)) then
             if (divisor >= 25000000) then -- Reloj central a 100 Mhz, debemos dividir tensión, 25000000 es 1 hercio
-                if (leoGlucosaOInsulina < 5) then -- Para ignorar las dos primeras lecturas
-                    leoGlucosaOInsulina <= leoGlucosaOInsulina +1;
+                if (leoGlucosaOInsulina < 8) then -- El sistema tiene ciertos ciclos segun el divisor de frecuencia
+                    leoGlucosaOInsulina <= leoGlucosaOInsulina +1; -- Cada vez que pasa el suficiente periodo de tiempo, se pasa a la siguiente fase
                 else
-                    leoGlucosaOInsulina <= 2;
+                    leoGlucosaOInsulina <= 2; -- Para ignorar las dos primeras lecturas
                 end if;
                 divisor <= 0;
                 -- INYECCIONES 
-                -- INSULINA LARGO PLAZO
-                if (segundos >= unDia) then -- Cada dia
-                    tiempoinyectoInsGlargina <= tiempoInyeccion;
-                    segundos <= 0;
+                -- CUANDO INYECTAR INSULINA LARGO PLAZO
+                if (segundos >= unDia) then -- Cada 24-30h se debe inyectar una dosis de insulina de largo plazo. Esto luego se deberia ajustar al paciente
+                    tiempoinyectoInsGlargina <= tiempoInyeccion; -- Cuanto inyectar tambien deberia ajustarse al paciente
+                    segundos <= 0; -- Resetea el contador
                 else
                     segundos <= segundos + 1;
                 end if;
+                -- DURANTE CUANTO TIEMPO INYECTAR INSULINA A LARGO PLAZO
                 if (tiempoinyectoInsGlargina < 1) then
-                    inyectoInsGlargina <= '0';
+                    inyectoInsGlargina <= '0'; -- No inyectar insulina a largo plazo si el timer es menor que cero
                 else
-                    if (inyectoInsGlargina = '0') then
-                        if (L3 = '0') then -- Inyecto insulina de corto plazo si no estamos en niveles letales
+                    if (inyectoInsGlargina = '0') then -- Si dice no inyectar insulina de largo plazo
+                        if (L3 = '0') then -- Inyecto insulina de largo plazo si no estamos en niveles letales de concentracion de insulina
                             inyectoInsGlargina <= '0';
                         else
                             inyectoInsGlargina <= '1';
                         end if;
                     else  
                         end if;
-                    tiempoinyectoInsGlargina <= tiempoinyectoInsGlargina -1;
+                    tiempoinyectoInsGlargina <= tiempoinyectoInsGlargina -1; -- Reducir el timer si es mayor que cero
                 end if;
-                -- Logica de inyecciones, antes fuera pero el Vivado se queja de multiply-driven si lo ponemos en otro sitio al escribir una senial en 
+                -- CUANDO INYECTAR LISPRO Y GLUCOSA, antes fuera pero el Vivado se queja de multiply-driven si lo ponemos en otro sitio al escribir una senial en 
                 -- dos sitios 
-                if ((leoGlucosaOInsulina = 4)) then
+                if ((leoGlucosaOInsulina = 7)) then -- En la ultima fase del ciclo es cuando inyectamos estas sustancias, debo dar tiempo a completar calculos
                     if ((nivelGlucemicoPrevio = nivelGlucemico)) then
-                        datAdicionales <= '1'; -- A lo mejor es útil para el futuro que pueda mantener niveles estables 
+                        datAdicionales <= '1'; -- A lo mejor es útil para el futuro que pueda mantener niveles estables e informar al exterior
                     else
-                        if (nivelGlucemico = hipoglucemia) then
+                        if (nivelGlucemico = hipoglucemia) then -- En caso de hipoglucemia, inyectar glucosa y no insulina
                             tiempoinyectoInsLispro <= 0;
                             tiempoinyectoGlucosa <= tiempoInyeccion;
-                        else if (nivelGlucemico = hiperglucemia) then
+                        else if (nivelGlucemico = hiperglucemia) then -- En caso de hiperglucemia, no inyectes mas glucosa y considerar inyectar insulina lispro
                                 tiempoinyectoGlucosa <= 0;
-                                if (L3 = '1') then -- No inyectar esta insulina si estamos a niveles letales
+                                if (L3 = '1') then -- No inyectar esta insulina si estamos a niveles letales de concentracion de insulina
                                     tiempoinyectoInsLispro <= tiempoInyeccion;
                                 else
                                 end if;
@@ -247,10 +249,10 @@ begin
                             end if;
                         end if;
                     end if;
-                    nivelGlucemicoPrevio <= nivelGlucemico;
+                    nivelGlucemicoPrevio <= nivelGlucemico; --Guardamos historial previo de niveles glucemicos.
                 else 
                 end if;
-                -- INSULINA CORTO PLAZO 
+                -- DURANTE CUANTO TIEMPO INYECTAR LISPRO
                 if (tiempoinyectoInsLispro < 1) then
                     inyectoInsLispro <= '0';
                 else
@@ -264,7 +266,7 @@ begin
                         end if;
                     tiempoinyectoInsLispro <= tiempoinyectoInsLispro -1;
                 end if;
-                -- GLUCOSA
+                -- DURANTE CUANTO TIEMPO INYECTAR GLUCOSA
                 if (tiempoinyectoGlucosa < 1) then
                     inyectoGlucosa <= '0';
                 else
@@ -278,43 +280,42 @@ begin
                 divisor <= divisor + 1;
             end if;
         else
-        end if;
-        -- LO DE ABAJO DESCOMENTARLO
-        --        
+        end if;  
     end process;
 
-    process (leoGlucosaOInsulina) --DIGO CUAL ENTRADA LEER
+    process (leoGlucosaOInsulina) --DIGO CUAL ENTRADA LEER, SEGUN FASES
     begin
-        if (leoGlucosaOInsulina = 2) then -- Leo insulina
-            edaddr_in <= e16daddr_in;
-            nivelInsulina <= resultado_int(15 DOWNTO 4);
-        else if (leoGlucosaOInsulina = 3) then -- Leo glucosa
-                edaddr_in <= e1Edaddr_in;
-                nivelGlucosa <= resultado_int(15 DOWNTO 4);
-            else
-        end if;
-        end if;
+    case (leoGlucosaOInsulina) is
+        when 0 => -- No hacer nada en las dos primeras fases, suponemos que
+        when 1 => -- las dos primeras lecturas de los sensores del paciente estan mal.
+        when 2 => edaddr_in <= e16daddr_in; -- Leo insulina, para ello primero indico cual es el registro del XADC que tiene el valor de la insulina
+        when 3 => nivelInsulina <= resultado_int(15 DOWNTO 4); -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura.
+        when 4 => edaddr_in <= e1Edaddr_in; -- Leo glucosa, para ello primero indico cual es el registro del XADC que tiene el valor de la glucosa
+        when 5 => nivelGlucosa <= resultado_int(15 DOWNTO 4); -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura.
+        when 6 => -- Fase de calculo de estado del paciente, en la que este proceso no participa.
+        when 7 => -- Fase de calculo de tiempos de inyecciones, en la que este proceso no participa.
+        when others => errorFases <= '1'; -- Informar de error
+    end case;
     end process;
     -- POR HACER: FILTRO DE KALMANN
     -- Esto en teoría es un sistema de control
-    process (leoGlucosaOInsulina) -- ANALISIS DEL PACIENTE
+    process (leoGlucosaOInsulina) -- PROCESO ENCARGADO DE LA FASE DE ANALISIS DEL PACIENTE
     begin
-        if (leoGlucosaOInsulina = 4) then
-            -- Esto seria a ajustar a la medida apropiada 
-            --  nivelGlucemicoPrevio <= nivelGlucemico;
+        if (leoGlucosaOInsulina = 6) then
+            -- Esto seria a ajustar a la medida apropiada segun el sensor empleado.
             if (L = '1') then
-                nivelGlucemico <= hipoglucemia;
+                nivelGlucemico <= hipoglucemia; -- Si el nivel de glucosa es menor que el valor hipoglucemico dado, decimos que el paciente esta hipoglucemico
             else
-                if (L2 = '1') then
+                if (L2 = '1') then -- Si el nivel de glucosa es mayor que el valor hiperglucemico dado, decimos que el paciente esta hiperglucemico
                     nivelGlucemico <= hiperglucemia;
-                else
+                else -- En otro caso, diremos que el paciente se encuentra en paramteros normales.
                     nivelGlucemico <= normal;
                 end if;
             end if;
         else
         end if;
     end process;
-    process (datAdicionales)
+    process (datAdicionales) -- PROCESO DE LA ESP32
     begin
         -- Aqui es donde hariamos algo con esto mediante ESP-32.
         -- Esto es un STUB 

@@ -47,17 +47,17 @@ create_clock -period 10.000 -name sys_clk_pin -waveform {0.000 5.000} -add [get_
 #set_property IOSTANDARD LVCMOS33 [get_ports {sw[15]}]
 
 #EL LED RGB DE NUESTRO PFA, 0 es B, 1 es G, 2 es R
-set_property PACKAGE_PIN J1 [get_ports {ledRGB[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {ledRGB[0]}]
+set_property PACKAGE_PIN J1 [get_ports {bombaGlucosa[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[0]}]
 ##Sch name = JA2
-set_property PACKAGE_PIN L2 [get_ports {ledRGB[1]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {ledRGB[1]}]
+set_property PACKAGE_PIN L2 [get_ports {bombaGlucosa[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[1]}]
 #Sch name = JA3
-set_property PACKAGE_PIN J2 [get_ports {ledRGB[2]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {ledRGB[2]}]
+set_property PACKAGE_PIN J2 [get_ports {bombaGlucosa[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[2]}]
 ##Sch name = JA4
-set_property PACKAGE_PIN G2 [get_ports {sNGlargina}]
-set_property IOSTANDARD LVCMOS33 [get_ports {sNGlargina}]
+set_property PACKAGE_PIN G2 [get_ports {bombaGlucosa[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[3]}]
 #Sch name = JA7
 set_property PACKAGE_PIN H1 [get_ports {sNLispro}]
 set_property IOSTANDARD LVCMOS33 [get_ports {sNLispro}]
@@ -65,8 +65,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports {sNLispro}]
 set_property PACKAGE_PIN K2 [get_ports {sNGlucosa}]
 set_property IOSTANDARD LVCMOS33 [get_ports {sNGlucosa}]
 #Sch name = JA9
-set_property PACKAGE_PIN H2 [get_ports {datAdicionales}]
-set_property IOSTANDARD LVCMOS33 [get_ports {datAdicionales}]
+set_property PACKAGE_PIN H2 [get_ports {sNGlargina}]
+set_property IOSTANDARD LVCMOS33 [get_ports {sNGlargina}]
 #Sch name = JA10
 set_property PACKAGE_PIN G3 [get_ports {buzzer}]
 set_property IOSTANDARD LVCMOS33 [get_ports {buzzer}]
@@ -208,17 +208,17 @@ set_property IOSTANDARD LVCMOS33 [get_ports {bombaInsLispro[3]}]
 
 #Pmod Header JC
 #Sch name = JC1
-set_property PACKAGE_PIN K17 [get_ports {bombaGlucosa[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[0]}]
+set_property PACKAGE_PIN K17 [get_ports {ledRGB[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ledRGB[0]}]
 #Sch name = JC2
-set_property PACKAGE_PIN M18 [get_ports {bombaGlucosa[1]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[1]}]
+set_property PACKAGE_PIN M18 [get_ports {ledRGB[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ledRGB[1]}]
 #Sch name = JC3
-set_property PACKAGE_PIN N17 [get_ports {bombaGlucosa[2]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[2]}]
+set_property PACKAGE_PIN N17 [get_ports {ledRGB[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ledRGB[2]}]
 #Sch name = JC4
-set_property PACKAGE_PIN P18 [get_ports {bombaGlucosa[3]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[3]}]
+set_property PACKAGE_PIN P18 [get_ports {datAdicionales}]
+set_property IOSTANDARD LVCMOS33 [get_ports {datAdicionales}]
 ##Sch name = JC7
 #set_property PACKAGE_PIN L17 [get_ports {JC[4]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {JC[4]}]
