@@ -94,8 +94,22 @@ architecture Arquitectura of ParCoGli is
     SIGNAL ledRGBint :std_logic_vector (2 downto 0) := "010"; -- Del Led RGB
     signal faltaNInsulina : std_logic := '0';
     signal faltaNGlucosa : std_logic := '0';
+    
+    Signal nivelGlucemicoPrevio : STD_LOGIC_VECTOR (1 downto 0) := "01"; -- Para que siempre sea diferente la primera vez tiene el valor 01, lectura anterior del nivel glucemico.
+    Signal nivelGlucemico : STD_LOGIC_VECTOR (1 downto 0) := "00"; -- Nivel glucemico que la ultima lectura ha dado.
+    constant hipoglucemia : STD_LOGIC_VECTOR (1 downto 0) := "11"; -- Almacenamos estas constantes para saber que es hiperglucemia,
+    constant normal : STD_LOGIC_VECTOR (1 downto 0) := "00"; -- hipoglucemia
+    constant hiperglucemia : STD_LOGIC_VECTOR (1 downto 0) := "10"; -- o estado habitual.
 
-    Signal nivelInsulina, nivelGlucosa: STD_LOGIC_VECTOR (15 downto 8) := "00000000";
+    constant tamComp : natural := 9; -- Utilizado para poder traducir enteros en forma decimal a forma binaria de tamComp bits
+
+    constant limitehipoglucemico : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := ent2bin(71, tamComp); -- <70 mg por dl es hipoglucemia
+    constant limitehiperglucemicoayunas : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := ent2bin(99, tamComp); -- >100 mg por dl es hiperglucemia en ayunas
+    constant limitehiperglucemicocomidas : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := ent2bin(199, tamComp); -- >200 mg por dl es hiperglucemia tras las comidas
+    constant insulinaLetal : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := ent2bin(15, tamComp); -- No inyectar insulina si la insulina ya está por encima de 15 en sangre, podría ser letal.
+
+
+    Signal nivelInsulina, nivelGlucosa: STD_LOGIC_VECTOR (15 downto (16-tamComp)) := "000000000";
     Signal resultado_int : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
     Signal dummy_int : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
     Signal edaddr_in : STD_LOGIC_VECTOR (6 downto 0) := "0010110"; -- Son la MUX_address.
@@ -121,19 +135,6 @@ architecture Arquitectura of ParCoGli is
     
     Signal divisor : integer :=0; -- Divisor de frecuencias
     Signal leoGlucosaOInsulina : integer := 0; -- A pesar de su nombre, tambien se usa para saber en que fase del cicl oestamos
-
-    Signal nivelGlucemicoPrevio : STD_LOGIC_VECTOR (1 downto 0) := "01"; -- Para que siempre sea diferente la primera vez tiene el valor 01, lectura anterior del nivel glucemico.
-    Signal nivelGlucemico : STD_LOGIC_VECTOR (1 downto 0) := "00"; -- Nivel glucemico que la ultima lectura ha dado.
-    constant hipoglucemia : STD_LOGIC_VECTOR (1 downto 0) := "11"; -- Almacenamos estas constantes para saber que es hiperglucemia,
-    constant normal : STD_LOGIC_VECTOR (1 downto 0) := "00"; -- hipoglucemia
-    constant hiperglucemia : STD_LOGIC_VECTOR (1 downto 0) := "10"; -- o estado habitual.
-
-    constant tamComp : natural := 8; -- Utilizado para poder traducir enteros en forma decimal a forma binaria de tamComp bits
-
-    constant limitehipoglucemico : STD_LOGIC_VECTOR (15 downto 8) := ent2bin(71, tamComp); -- <70 mg por dl es hipoglucemia
-    constant limitehiperglucemicoayunas : STD_LOGIC_VECTOR (15 downto 8) := ent2bin(99, tamComp); -- >100 mg por dl es hiperglucemia en ayunas
-    constant limitehiperglucemicocomidas : STD_LOGIC_VECTOR (15 downto 8) := ent2bin(199, tamComp); -- >200 mg por dl es hiperglucemia tras las comidas
-    constant insulinaLetal : STD_LOGIC_VECTOR (15 downto 8) := ent2bin(15, tamComp); -- No inyectar insulina si la insulina ya está por encima de 15 en sangre, podría ser letal.
 
     SIGNAL G_1, E_1, L_1, G_2, E_2, L_2, G_3, E_3, L_3: STD_LOGIC := '0';
     SIGNAL G, E, L: STD_LOGIC; -- Para el comparador de hipoglucemia
@@ -289,9 +290,9 @@ begin
         when 0 => -- No hacer nada en las dos primeras fases, suponemos que
         when 1 => -- las dos primeras lecturas de los sensores del paciente estan mal.
         when 2 => edaddr_in <= e16daddr_in; -- Leo insulina, para ello primero indico cual es el registro del XADC que tiene el valor de la insulina
-        when 3 => nivelInsulina <= resultado_int(15 DOWNTO 8); -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura.
+        when 3 => nivelInsulina <= resultado_int(15 DOWNTO (16-tamComp)); -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura.
         when 4 => edaddr_in <= e1Edaddr_in; -- Leo glucosa, para ello primero indico cual es el registro del XADC que tiene el valor de la glucosa
-        when 5 => nivelGlucosa <= resultado_int(15 DOWNTO 8); -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura.
+        when 5 => nivelGlucosa <= resultado_int(15 DOWNTO (16-tamComp)); -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura.
         when 6 => -- Fase de calculo de estado del paciente, en la que este proceso no participa.
         when 7 => -- Fase de calculo de tiempos de inyecciones, en la que este proceso no participa.
         when others => errorFases <= '1'; -- Informar de error
