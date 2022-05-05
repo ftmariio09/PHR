@@ -46,7 +46,7 @@ create_clock -period 10.000 -name sys_clk_pin -waveform {0.000 5.000} -add [get_
 #set_property PACKAGE_PIN R2 [get_ports {sw[15]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {sw[15]}]
 
-#EL LED RGB DE NUESTRO PFA, 0 es B, 1 es G, 2 es R
+# Bomba glucosa
 set_property PACKAGE_PIN J1 [get_ports {bombaGlucosa[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[0]}]
 ##Sch name = JA2
@@ -58,7 +58,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[2]}]
 ##Sch name = JA4
 set_property PACKAGE_PIN G2 [get_ports {bombaGlucosa[3]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[3]}]
-#Sch name = JA7
+#Sch name = JA7 Sensores depositos
 set_property PACKAGE_PIN H1 [get_ports {sNLispro}]
 set_property IOSTANDARD LVCMOS33 [get_ports {sNLispro}]
 #Sch name = JA8
@@ -206,7 +206,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports {bombaInsLispro[3]}]
 
 
 
-#Pmod Header JC
+#Pmod Header JC LED RGB DE NUESTRO PFA, 0 es B, 1 es G, 2 es R
 #Sch name = JC1
 set_property PACKAGE_PIN K17 [get_ports {ledRGB[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {ledRGB[0]}]
