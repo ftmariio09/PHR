@@ -200,7 +200,7 @@ begin
     process (clk) --PROCESO RELACIONADO CON RELOJES Y TIMERS
     begin
         if (rising_edge(clk)) then
-            if (divisor >= 100000000) then -- Reloj central a 100 Mhz, periodo inverso de la frecuencia, 1 entre 100 MHz, debemos dividir tensión, 100000000 es 1 hercio.
+            if (divisor >= 50000000) then -- Reloj central a 100 Mhz, periodo inverso de la frecuencia, 1 entre 100 MHz, debemos dividir tensión, 100000000 es 1 hercio.
                 if (leoGlucosaOInsulina < 8) then -- El sistema tiene ciertos ciclos segun el divisor de frecuencia
                     leoGlucosaOInsulina <= leoGlucosaOInsulina +1; -- Cada vez que pasa el suficiente periodo de tiempo, se pasa a la siguiente fase
                 else
@@ -219,7 +219,7 @@ begin
                 if (tiempoinyectoInsGlargina < 1) then
                     inyectoInsGlargina <= '0'; -- No inyectar insulina a largo plazo si el timer es menor que cero
                 else
-                    if (inyectoInsGlargina = '0') then -- Si dice no inyectar insulina de largo plazo
+                    if (inyectoInsGlargina = '0' and (segundos >= unDia)) then -- Si dice no inyectar insulina de largo plazo
                         if (L3 = '0') then -- Inyecto insulina de largo plazo si no estamos en niveles letales de concentracion de insulina
                             inyectoInsGlargina <= '0';
                         else
