@@ -59,14 +59,14 @@ set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[2]}]
 set_property PACKAGE_PIN G2 [get_ports {bombaGlucosa[3]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {bombaGlucosa[3]}]
 #Sch name = JA7 Sensores depositos
-set_property PACKAGE_PIN H1 [get_ports {sNLispro}]
-set_property IOSTANDARD LVCMOS33 [get_ports {sNLispro}]
-#Sch name = JA8
-set_property PACKAGE_PIN K2 [get_ports {sNGlucosa}]
-set_property IOSTANDARD LVCMOS33 [get_ports {sNGlucosa}]
-#Sch name = JA9
-set_property PACKAGE_PIN H2 [get_ports {sNGlargina}]
-set_property IOSTANDARD LVCMOS33 [get_ports {sNGlargina}]
+#set_property PACKAGE_PIN H1 [get_ports {sNLispro}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {sNLispro}]
+##Sch name = JA8
+#set_property PACKAGE_PIN K2 [get_ports {sNGlucosa}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {sNGlucosa}]
+##Sch name = JA9
+#set_property PACKAGE_PIN H2 [get_ports {sNGlargina}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {sNGlargina}]
 #Sch name = JA10
 set_property PACKAGE_PIN G3 [get_ports {buzzer}]
 set_property IOSTANDARD LVCMOS33 [get_ports {buzzer}]
@@ -220,14 +220,14 @@ set_property IOSTANDARD LVCMOS33 [get_ports {ledRGB[2]}]
 set_property PACKAGE_PIN P18 [get_ports {datAdicionales}]
 set_property IOSTANDARD LVCMOS33 [get_ports {datAdicionales}]
 ##Sch name = JC7
-#set_property PACKAGE_PIN L17 [get_ports {JC[4]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {JC[4]}]
+set_property PACKAGE_PIN L17 [get_ports {sNLispro}]
+set_property IOSTANDARD LVCMOS33 [get_ports {sNLispro}]
 ##Sch name = JC8
-#set_property PACKAGE_PIN M19 [get_ports {JC[5]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {JC[5]}]
+set_property PACKAGE_PIN M19 [get_ports {sNGlucosa}]
+set_property IOSTANDARD LVCMOS33 [get_ports {sNGlucosa}]
 ##Sch name = JC9
-#set_property PACKAGE_PIN P17 [get_ports {JC[6]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {JC[6]}]
+set_property PACKAGE_PIN P17 [get_ports {sNGlargina}]
+set_property IOSTANDARD LVCMOS33 [get_ports {sNGlargina}]
 ##Sch name = JC10
 #set_property PACKAGE_PIN R18 [get_ports {JC[7]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {JC[7]}]

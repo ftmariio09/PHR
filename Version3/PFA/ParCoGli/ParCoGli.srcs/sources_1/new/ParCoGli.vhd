@@ -140,7 +140,7 @@ architecture Arquitectura of ParCoGli is
     SIGNAL G, E, L: STD_LOGIC; -- Para el comparador de hipoglucemia
     SIGNAL G2, E2, L2: STD_LOGIC; -- Para el comaprador de hiperglucemia
     SIGNAL G3, E3, L3: STD_LOGIC; -- Para el comaprador de insulina Letal
-    SIGNAL unDia : integer := 86400; -- Tiempo entre inyecciones de glargina, 86400 segundos
+    SIGNAL unDia : integer := 172800; -- Tiempo entre inyecciones de glargina, 86400 segundos * 2 ciclos/seg = 172800
     SIGNAL segundos : integer; -- Cuenta segundos hasta siguiente inyeccion de glargina
     SIGNAL inyectoGlucosa : STD_LOGIC := '0'; -- Enable para inyector de glucosa
     SIGNAL inyectoInsGlargina : STD_LOGIC := '0'; -- Enable para inyector de insulina de accion rapida
@@ -148,7 +148,7 @@ architecture Arquitectura of ParCoGli is
     SIGNAL tiempoinyectoInsGlargina : integer := 0; -- Tiempo que debo estar inyectando insulina lenta
     SIGNAL tiempoinyectoInsLispro : integer := 0; -- Tiempo que debo estar inyectando insulina rapida
     SIGNAL tiempoinyectoGlucosa : integer := 0; -- Tiempo que debo estar inyectando glucosa
-    SIGNAL tiempoInyeccion : integer := 20; -- Supongamos que un inyector tarda unas 20 fases (eso son 5 segundos) en descargar su carga. Estamos simulándolo.
+    SIGNAL tiempoInyeccion : integer := 10; -- Supongamos que un inyector tarda unas 10 fases (eso son 5 segundos) en descargar su carga. Estamos simulándolo.
 
     SIGNAL variableConfigESP : std_logic_vector(15 downto 0) := "0000000000000000"; -- Usaremos todo ceros para decir no hay comandos que recibir, es del ESP
     
@@ -200,7 +200,7 @@ begin
     process (clk) --PROCESO RELACIONADO CON RELOJES Y TIMERS
     begin
         if (rising_edge(clk)) then
-            if (divisor >= 50000000) then -- Reloj central a 100 Mhz, periodo inverso de la frecuencia, 1 entre 100 MHz, debemos dividir tensión, 100000000 es 1 hercio.
+            if (divisor >= 50000000) then -- Reloj central a 100 Mhz, periodo inverso de la frecuencia, 1 entre 100 MHz, debemos dividir tensión, 100000000 subidas es 1 hercio.
                 if (leoGlucosaOInsulina < 8) then -- El sistema tiene ciertos ciclos segun el divisor de frecuencia
                     leoGlucosaOInsulina <= leoGlucosaOInsulina +1; -- Cada vez que pasa el suficiente periodo de tiempo, se pasa a la siguiente fase
                 else
@@ -219,7 +219,7 @@ begin
                 if (tiempoinyectoInsGlargina < 1) then
                     inyectoInsGlargina <= '0'; -- No inyectar insulina a largo plazo si el timer es menor que cero
                 else
-                    if (inyectoInsGlargina = '0' and (segundos >= unDia)) then -- Si dice no inyectar insulina de largo plazo
+                    if (inyectoInsGlargina = '0') then -- Si dice no inyectar insulina de largo plazo
                         if (L3 = '0') then -- Inyecto insulina de largo plazo si no estamos en niveles letales de concentracion de insulina
                             inyectoInsGlargina <= '0';
                         else
