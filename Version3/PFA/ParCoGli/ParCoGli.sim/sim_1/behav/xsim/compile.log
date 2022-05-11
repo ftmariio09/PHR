@@ -1,0 +1,6 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/ParCoGli.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'ParCoGli'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/SumadorTotal.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SumTot1Bit'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sim_1/new/ParCoGli_Test.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'ParCoGli_Test'

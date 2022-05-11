@@ -71,7 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
-set_param chipscope.maxJobs 4
+set_param synth.incrementalSynthesisCache C:/Users/andro/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-29768-LAPTOP-9GJB53N6/incrSyn
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
@@ -95,6 +95,8 @@ read_vhdl -library xil_defaultlib {
   C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/Utiles.vhd
   C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/inyector.vhd
   C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/encendedorBuzzy.vhd
+  C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/SumTotalN.vhd
+  C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/SumadorTotal.vhd
   C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/new/ParCoGli.vhd
 }
 read_ip -quiet C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.srcs/sources_1/ip/xadc_wiz_0/xadc_wiz_0.xci

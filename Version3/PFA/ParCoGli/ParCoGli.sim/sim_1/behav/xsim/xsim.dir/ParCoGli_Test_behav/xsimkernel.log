@@ -1,7 +1,0 @@
-Running: xsim.dir/ParCoGli_Test_behav/xsimk.exe -simmode gui -wdb ParCoGli_Test_behav.wdb -simrunnum 0 -socket 50078
-Design successfully loaded
-Design Loading Memory Usage: 7496 KB (Peak: 7496 KB)
-Design Loading CPU Usage: 30 ms
-Simulation completed
-Simulation Memory Usage: 8176 KB (Peak: 8176 KB)
-Simulation CPU Usage: 46 ms

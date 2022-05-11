@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2021.2 (win64) Build 3367213 Tue Oct 19 02:48:09 MDT 2021
-| Date             : Wed May  4 16:23:40 2022
+| Date             : Wed May 11 14:27:53 2022
 | Host             : LAPTOP-9GJB53N6 running 64-bit major release  (build 9200)
 | Command          : report_power -file ParCoGli_power_routed.rpt -pb ParCoGli_power_summary_routed.pb -rpx ParCoGli_power_routed.rpx
 | Design           : ParCoGli
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.084        |
+| Total On-Chip Power (W)  | 0.086        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.013        |
+| Dynamic (W)              | 0.014        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.6         |
@@ -53,16 +53,16 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |     0.001 |      965 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      323 |     20800 |            1.55 |
+| Slice Logic    |     0.002 |     1032 |       --- |             --- |
+|   LUT as Logic |     0.001 |      347 |     20800 |            1.67 |
 |   CARRY4       |    <0.001 |      124 |      8150 |            1.52 |
-|   Register     |    <0.001 |      377 |     41600 |            0.91 |
+|   Register     |    <0.001 |      403 |     41600 |            0.97 |
 |   Others       |     0.000 |       14 |       --- |             --- |
-| Signals        |     0.001 |      556 |       --- |             --- |
-| I/O            |     0.006 |       25 |       106 |           23.58 |
+| Signals        |     0.002 |      614 |       --- |             --- |
+| I/O            |     0.007 |       25 |       106 |           23.58 |
 | XADC           |     0.002 |        1 |       --- |             --- |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.084 |          |           |                 |
+| Total          |     0.086 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,7 +72,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.015 |       0.005 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.016 |       0.006 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.003 |       0.002 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -141,7 +141,7 @@ Table of Contents
 +----------+-----------+
 | Name     | Power (W) |
 +----------+-----------+
-| ParCoGli |     0.013 |
+| ParCoGli |     0.014 |
 |   uut    |     0.002 |
 +----------+-----------+
 
