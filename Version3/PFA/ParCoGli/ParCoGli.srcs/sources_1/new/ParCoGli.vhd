@@ -40,6 +40,7 @@ entity ParCoGli is
          ledRGB : OUT std_logic_vector (2 downto 0);  -- Salidas del RGB
          buzzer: OUT std_logic;
          bombaInsGlargina, bombaInsLispro, bombaGlucosa : OUT std_logic_vector(3 downto 0);  -- Salidas del Buzzer y actuadores
+         nivelGlucosaE : OUT std_logic_vector (8 downto 0); -- PARA PRUEBAS DE MEDIAS
          clk : in std_logic -- Senial de reloj
         );
 end ParCoGli;
@@ -108,7 +109,7 @@ architecture Arquitectura of ParCoGli is
     constant limitehiperglucemicoayunas : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := ent2bin(99, tamComp); -- >100 mg por dl es hiperglucemia en ayunas
     constant limitehiperglucemicocomidas : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := ent2bin(199, tamComp); -- >200 mg por dl es hiperglucemia tras las comidas
     constant insulinaLetal : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := ent2bin(15, tamComp); -- No inyectar insulina si la insulina ya está por encima de 15 en sangre, podría ser letal.
-    constant cerosDeLectura : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := "000000000";
+    constant cerosDeLectura : STD_LOGIC_VECTOR (15 downto (16-tamComp-2)) := "00000000000";
 
 
     SIGNAL ledRGBint :std_logic_vector (2 downto 0) := "010"; -- Del Led RGB
@@ -118,8 +119,8 @@ architecture Arquitectura of ParCoGli is
     Signal nivelGlucemicoPrevio : STD_LOGIC_VECTOR (1 downto 0) := "01"; -- Para que siempre sea diferente la primera vez tiene el valor 01, lectura anterior del nivel glucemico.
     Signal nivelGlucemico : STD_LOGIC_VECTOR (1 downto 0) := "00"; -- Nivel glucemico que la ultima lectura ha dado.
 
-    TYPE matriz IS ARRAY (4 downto 0) of std_logic_vector(15 downto(16-tamComp));
-    -- Usamos la matriz para calcular las medias, para ello guardamos en las N-1 filas el valor leído, y en la última la suma, que se divide por 4 (entendido como mover el resultado dos a la derecha)
+    TYPE matriz IS ARRAY (4 downto 0) of std_logic_vector(15 downto (16-tamComp-2));
+    -- Usamos la matriz para guardar los valores para calculos, para ello guardamos en las N-1 filas el valor leído, y en la última la suma, que se divide por 4 (entendido como mover el resultado dos a la derecha)
     Signal lectInsulina, lectGlucosa: matriz;
     Signal nivelInsulina, nivelGlucosa: STD_LOGIC_VECTOR (15 downto (16-tamComp)) := "000000000";
     Signal resultado_int : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
@@ -166,8 +167,8 @@ architecture Arquitectura of ParCoGli is
     
     SIGNAL errorFases : STD_LOGIC := '0'; -- En un futuro, para informar de un tipo de error.
     
-    SIGNAL SumA1, SumB1, ResulSum1, SumA2, SumB2, ResulSum2 : STD_LOGIC_VECTOR(15 downto (16-tamComp)) := "000000000";
-    SIGNAL SumOverflow1, SumOverflow2 : STD_LOGIC := '0';
+    SIGNAL SumA1, SumB1, ResulSum1, SumA2, SumB2, ResulSum2, SumA3, SumB3, ResulSum3, SumA4, SumB4, ResulSum4 : STD_LOGIC_VECTOR(15 downto (16-tamComp-2)) := "00000000000";
+    SIGNAL SumOverflow1, SumOverflow2, SumOverflow3, SumOverflow4 : STD_LOGIC := '0';
 begin
     uut:   xadc_wiz_0 PORT MAP(
             edaddr_in,
@@ -196,8 +197,10 @@ begin
     InyectorbombaInsGlargina: inyector PORT MAP (inyectoInsGlargina, clk, bombaInsGlargina);
     InyectorbombaInsLispro: inyector PORT MAP (inyectoInsLispro, clk, bombaInsLispro);
     InyectorGlucosa: inyector PORT MAP (inyectoGlucosa, clk, bombaGlucosa);
-    SumadorSistema1: SumToN GENERIC MAP (tamComp) PORT MAP (SumA1, SumB1, ResulSum1, SumOverflow1); -- Hemos decidido tener 2 unidades funcionales de suma 
-    SumadorSistema2: SumToN GENERIC MAP (tamComp) PORT MAP (SumA2, SumB2, ResulSum2, SumOverflow2); -- Para agilizar los cálculos
+    SumadorSistema1: SumToN GENERIC MAP (tamComp+2) PORT MAP (SumA1, SumB1, ResulSum1, SumOverflow1); -- Hemos decidido tener 2 unidades funcionales de suma 
+    SumadorSistema2: SumToN GENERIC MAP (tamComp+2) PORT MAP (SumA2, SumB2, ResulSum2, SumOverflow2); -- Para agilizar los cálculos
+    SumadorSistema3: SumToN GENERIC MAP (tamComp+2) PORT MAP (SumA3, SumB3, ResulSum3, SumOverflow3); -- Reservadas para cada medición 
+    SumadorSistema4: SumToN GENERIC MAP (tamComp+2) PORT MAP (SumA4, SumB4, ResulSum4, SumOverflow4); -- con el fin de prevenir condiciones de carrera
     
     process (sNGlargina, sNLispro, sNGlucosa, clk) -- PROCESO RELACIONADO CON LEDES RGB
         variable queLefalta : std_logic_vector(1 downto 0); -- Consideramos si falta insulina o glucosa, lo revisa periódicamente o cuando uno cambie.
@@ -217,7 +220,7 @@ begin
     begin
         if (rising_edge(clk)) then
             if (divisor >= 50000000) then -- Reloj central a 100 Mhz, periodo inverso de la frecuencia, 1 entre 100 MHz, debemos dividir tensión, 100000000 subidas es 1 hercio.
-                if (leoGlucosaOInsulina < 8) then -- El sistema tiene ciertos ciclos segun el divisor de frecuencia
+                if (leoGlucosaOInsulina < 16) then -- El sistema tiene ciertos ciclos segun el divisor de frecuencia
                     leoGlucosaOInsulina <= leoGlucosaOInsulina +1; -- Cada vez que pasa el suficiente periodo de tiempo, se pasa a la siguiente fase
                 else
                     leoGlucosaOInsulina <= 2; -- Para ignorar las dos primeras lecturas
@@ -307,34 +310,35 @@ begin
         when 1 => -- las dos primeras lecturas de los sensores del paciente estan mal.
         when 2 => edaddr_in <= e16daddr_in; -- Leo insulina, para ello primero indico cual es el registro del XADC que tiene el valor de la insulina
         when 3 => sumA1 <= cerosDeLectura;  -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura y lo guardo para media
-                  sumB1 <= resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
-                  lectInsulina(0) <= resultado_int(15 DOWNTO (16-tamComp)); -- registro el valor por si acaso lo usamos en algún futuro (ej ESP-32)
+                  sumB1 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
+                  lectInsulina(0) <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- registro el valor por si acaso lo usamos en algún futuro (ej ESP-32)
         when 4 => sumA2 <= ResulSum1; -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura y lo guardo para media
-                  sumB2 <= resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
-                  lectInsulina(1) <= resultado_int(15 DOWNTO (16-tamComp));
+                  sumB2 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
+                  lectInsulina(1) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
         when 5 => sumA1 <= ResulSum2;
-                  sumB1 <= resultado_int(15 DOWNTO (16-tamComp)); -- Hago lo mismo que en el ciclo anterior
-                  lectInsulina(2) <= resultado_int(15 DOWNTO (16-tamComp));
+                  sumB1 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Hago lo mismo que en el ciclo anterior
+                  lectInsulina(2) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
         when 6 => sumA2 <= ResulSum1;
-                  sumB2 <= resultado_int(15 DOWNTO (16-tamComp)); -- Finalmente cuando tengo el num de lecturas deseadas
-                  lectInsulina(3) <= resultado_int(15 DOWNTO (16-tamComp));
-        when 7 => lectInsulina(4) <= "00"&ResulSum2(15 downto (16-tamComp+2)); -- Dividimos por 4 para calcular la media (mover registro a la derecha en este caso)
+                  sumB2 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Finalmente cuando tengo el num de lecturas deseadas
+                  lectInsulina(3) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
+        when 7 => lectInsulina(4) <= "0000"&ResulSum2(15 downto (16-tamComp+2)); -- Dividimos por 4 para calcular la media (mover registro a la derecha en este caso)
                   nivelInsulina <= "00"&ResulSum2(15 downto (16-tamComp+2)); -- y lo enviamos al comparador                                                  
         when 8 => edaddr_in <= e1Edaddr_in; -- Leo glucosa, para ello primero indico cual es el registro del XADC que tiene el valor de la glucosa
-        when 9 => sumA1 <= cerosDeLectura;  -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura y lo guardo para media
-                  sumB1 <= resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
-                  lectGlucosa(0) <= resultado_int(15 DOWNTO (16-tamComp)); -- Igual que para la insulina   
-        when 10 => sumA2 <= ResulSum1; 
-                   sumB2 <= resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
-                   lectGlucosa(1) <= resultado_int(15 DOWNTO (16-tamComp));
-        when 11 => sumA1 <= ResulSum2;
-                   sumB1 <= resultado_int(15 DOWNTO (16-tamComp)); -- Hago lo mismo que en el ciclo anterior
-                   lectGlucosa(2) <= resultado_int(15 DOWNTO (16-tamComp));
-        when 12 => sumA2 <= ResulSum1;
-                   sumB2 <= resultado_int(15 DOWNTO (16-tamComp)); -- Finalmente cuando tengo el num de lecturas deseadas
-                   lectGlucosa(3) <= resultado_int(15 DOWNTO (16-tamComp));
-        when 13 => lectGlucosa(4) <= "00"&ResulSum2(15 downto (16-tamComp+2)); -- Dividimos por 4 para calcular la media (mover registro a la derecha en este caso)
-                   nivelGlucosa <= "00"&ResulSum2(15 downto (16-tamComp+2)); -- y lo enviamos al comparador 
+        when 9 => sumA3 <= cerosDeLectura;  -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura y lo guardo para media
+                  sumB3 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
+                  lectGlucosa(0) <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Igual que para la insulina   
+        when 10 => sumA4 <= ResulSum3; 
+                   sumB4 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
+                   lectGlucosa(1) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
+        when 11 => sumA3 <= ResulSum4;
+                   sumB3 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Hago lo mismo que en el ciclo anterior
+                   lectGlucosa(2) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
+        when 12 => sumA4 <= ResulSum3;
+                   sumB4 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Finalmente cuando tengo el num de lecturas deseadas
+                   lectGlucosa(3) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
+        when 13 => lectGlucosa(4) <= "0000"&ResulSum4(15 downto (16-tamComp+2)); -- Dividimos por 4 para calcular la media (mover registro a la derecha en este caso)
+                   nivelGlucosa <= "00"&ResulSum4(15 downto (16-tamComp+2)); -- y lo enviamos al comparador 
+                   nivelGlucosaE <= "00"&ResulSum4(15 downto (16-tamComp+2));
         when 14 => -- Fase de calculo de estado del paciente, en la que este proceso no participa.
         when 15 => -- Fase de calculo de tiempos de inyecciones, en la que este proceso no participa.
         when others => errorFases <= '1'; -- Informar de error

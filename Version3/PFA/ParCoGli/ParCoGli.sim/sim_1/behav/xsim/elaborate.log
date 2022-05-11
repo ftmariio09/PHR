@@ -25,7 +25,7 @@ Compiling architecture iterativa of entity xil_defaultlib.Comp_N_Reu [\Comp_N_Re
 Compiling architecture behavior of entity xil_defaultlib.encendedorBuzzy [encendedorbuzzy_default]
 Compiling architecture behavior of entity xil_defaultlib.inyector [inyector_default]
 Compiling architecture funcional of entity xil_defaultlib.SumTot1Bit [sumtot1bit_default]
-Compiling architecture behavioral of entity xil_defaultlib.SumToN [\SumToN(n=9)\]
+Compiling architecture behavioral of entity xil_defaultlib.SumToN [\SumToN(n=11)\]
 Compiling architecture arquitectura of entity xil_defaultlib.ParCoGli [parcogli_default]
 Compiling architecture testeo of entity xil_defaultlib.parcogli_test
 Built simulation snapshot ParCoGli_Test_behav
