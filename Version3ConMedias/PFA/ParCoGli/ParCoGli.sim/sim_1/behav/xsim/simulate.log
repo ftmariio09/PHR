@@ -1,0 +1,567 @@
+Time resolution is 1 ps
+Warning: *** Warning: The analog data file for XADC was not found. Use the SIM_MONITOR_FILE generic to specify the input analog data file name or use default name: design.txt. 
+Time: 0 ps  Iteration: 0  Process: /ParCoGli_Test/aparato/uut/U0/READFILE_P  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 3 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 3 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 3 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 3 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 5 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 5 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 5 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 5 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 7 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 7 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 7 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 7 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 9 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 9 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 11 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 11 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 11 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 11 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 13 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 13 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 13 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 13 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 15 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 15 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 15 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 15 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 17 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 17 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 17 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 17 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 19 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 19 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 19 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 19 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 21 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 21 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 21 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 21 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 23 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 23 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 23 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 23 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 25 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 25 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 25 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 25 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 27 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 27 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 27 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 27 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 29 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 29 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 29 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 29 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 31 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 31 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 31 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 31 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 33 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 33 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 33 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 33 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 35 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 35 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 35 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 35 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 37 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 37 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 37 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 37 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 39 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 39 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 39 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 39 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 41 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 41 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 41 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 41 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 43 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 43 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 43 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 43 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 45 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 45 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 45 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 45 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 47 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 47 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 47 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 47 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 49 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 49 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 49 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 49 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 51 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 51 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 51 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 51 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 53 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 53 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 53 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 53 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 55 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 55 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 55 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 55 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 57 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 57 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 57 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 57 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 59 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 59 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 59 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 59 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 61 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 61 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 61 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 61 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 63 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 63 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 63 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 63 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 65 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 65 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 65 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 65 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 67 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 67 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 67 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 67 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 69 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 69 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 69 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 69 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 71 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 71 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 71 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 71 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 73 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 73 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 73 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 73 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 75 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 75 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 75 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 75 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 77 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 77 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 77 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 77 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 79 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 79 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 79 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 79 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 81 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 81 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 81 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 81 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 83 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 83 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 83 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 83 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 85 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 85 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 85 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 85 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 87 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 87 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 87 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 87 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 89 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 89 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 89 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 89 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 91 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 91 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 91 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 91 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 93 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 93 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 93 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 93 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 95 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 95 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 95 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 95 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 97 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 97 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 97 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 97 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 99 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 99 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 99 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 99 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 101 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 101 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 101 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 101 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 103 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 103 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 103 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 103 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 105 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 105 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 105 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 105 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 107 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 107 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 107 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 107 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 109 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 109 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 109 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 109 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 111 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 111 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 111 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 111 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 113 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 113 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 113 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 113 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 115 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 115 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 115 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 115 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 117 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 117 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 117 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 117 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 119 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 119 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 119 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 119 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 121 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 121 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 121 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 121 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 123 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 123 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 123 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 123 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 125 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 125 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 125 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 125 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 127 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 127 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 127 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 127 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 129 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 129 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 129 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 129 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 131 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 131 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 131 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 131 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 133 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 133 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 133 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 133 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 135 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 135 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 135 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 135 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 137 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 137 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 137 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 137 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 139 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 139 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 139 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 139 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 141 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 141 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 141 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 141 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 143 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 143 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 143 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 143 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 145 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 145 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 145 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 145 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 147 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 147 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 147 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 147 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 149 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 149 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 149 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 149 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 151 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 151 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 151 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 151 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 153 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 153 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 153 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 153 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 155 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 155 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 155 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 155 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 157 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 157 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 157 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 157 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 159 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 159 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 159 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 159 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 161 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 161 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 161 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 161 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 163 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 163 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 163 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 163 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 165 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 165 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 165 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 165 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 167 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 167 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 167 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 167 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 169 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 169 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 169 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 169 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 171 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 171 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 171 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 171 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 173 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 173 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 173 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 173 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 175 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 175 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 175 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 175 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 177 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 177 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 177 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 177 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 179 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 179 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 179 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 179 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 181 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 181 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 181 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 181 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 183 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 183 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 183 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 183 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 185 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 185 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 185 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 185 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 187 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 187 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 187 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 187 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 189 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 189 ns
+Failure: DRC Error :  DEN is enabled before DRDY returns.
+Time: 189 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 189 ns
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 191 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 191 ns

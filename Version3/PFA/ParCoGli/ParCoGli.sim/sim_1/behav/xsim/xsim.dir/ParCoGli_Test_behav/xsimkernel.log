@@ -2,3 +2,6 @@ Running: xsim.dir/ParCoGli_Test_behav/xsimk.exe -simmode gui -wdb ParCoGli_Test_
 Design successfully loaded
 Design Loading Memory Usage: 8044 KB (Peak: 8044 KB)
 Design Loading CPU Usage: 93 ms
+Simulation completed
+Simulation Memory Usage: 8872 KB (Peak: 8872 KB)
+Simulation CPU Usage: 124 ms

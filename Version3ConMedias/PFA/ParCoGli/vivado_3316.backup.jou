@@ -1,0 +1,56 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Thu May 12 17:57:59 2022
+# Process ID: 3316
+# Current directory: C:/Users/user2/Desktop/Version3ConMedias/PFA/ParCoGli
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1252 C:\Users\user2\Desktop\Version3ConMedias\PFA\ParCoGli\ParCoGli.xpr
+# Log file: C:/Users/user2/Desktop/Version3ConMedias/PFA/ParCoGli/vivado.log
+# Journal file: C:/Users/user2/Desktop/Version3ConMedias/PFA/ParCoGli\vivado.jou
+# Running On: funda8, OS: Windows, CPU Frequency: 3192 MHz, CPU Physical cores: 4, Host memory: 17054 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/user2/Desktop/Version3ConMedias/PFA/ParCoGli/ParCoGli.xpr
+update_compile_order -fileset sources_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+reset_run synth_1
+launch_runs synth_1 -jobs 2
+wait_on_run synth_1
+launch_runs impl_1 -jobs 2
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 2
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/user2/Desktop/Version3ConMedias/PFA/ParCoGli/ParCoGli.runs/impl_1/ParCoGli.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/user2/Desktop/Version3ConMedias/PFA/ParCoGli/ParCoGli.runs/impl_1/ParCoGli.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/user2/Desktop/Version3ConMedias/PFA/ParCoGli/ParCoGli.runs/impl_1/ParCoGli.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/user2/Desktop/Version3ConMedias/PFA/ParCoGli/ParCoGli.runs/impl_1/ParCoGli.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs synth_1 -jobs 2
+wait_on_run synth_1
+launch_runs impl_1 -jobs 2
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 2
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/user2/Desktop/Version3ConMedias/PFA/ParCoGli/ParCoGli.runs/impl_1/ParCoGli.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]

@@ -1,0 +1,6 @@
+Time resolution is 1 ps
+Warning: *** Warning: The analog data file for XADC was not found. Use the SIM_MONITOR_FILE generic to specify the input analog data file name or use default name: design.txt. 
+Time: 0 ps  Iteration: 0  Process: /ParCoGli_Test/aparato/uut/U0/READFILE_P  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+Failure: DRC Error : DEN is high for more than 1 DCLK.
+Time: 3 ns  Iteration: 2  Process: /ParCoGli_Test/aparato/uut/U0/drp_monitor  File: C:/Xilinx2021/Vivado/2021.2/data/vhdl/src/unisims/primitive/XADC.vhd
+$finish called at time : 3 ns
