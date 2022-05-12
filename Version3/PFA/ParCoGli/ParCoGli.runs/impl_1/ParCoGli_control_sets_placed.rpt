@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.2 (win64) Build 3367213 Tue Oct 19 02:48:09 MDT 2021
-| Date         : Thu May 12 13:48:30 2022
+| Date         : Thu May 12 16:52:39 2022
 | Host         : LAPTOP-9GJB53N6 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file ParCoGli_control_sets_placed.rpt
 | Design       : ParCoGli
@@ -73,26 +73,26 @@ Table of Contents
 +----------------+-------------------------------------------+-------------------------------------------+------------------+----------------+--------------+
 |  Clock Signal  |               Enable Signal               |              Set/Reset Signal             | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+-------------------------------------------+-------------------------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG | InyectorbombaInsLispro/estado_anterior0   |                                           |                2 |              8 |         4.00 |
 |  clk_IBUF_BUFG | InyectorGlucosa/estado_anterior0          |                                           |                2 |              8 |         4.00 |
 |  clk_IBUF_BUFG | InyectorbombaInsGlargina/estado_anterior0 |                                           |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG | InyectorbombaInsLispro/estado_anterior0   |                                           |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG | lectGlucosa[1]                            |                                           |                5 |              9 |         1.80 |
+|  clk_IBUF_BUFG | lectGlucosa[2]                            |                                           |                3 |              9 |         3.00 |
 |  clk_IBUF_BUFG | lectGlucosa[3]                            |                                           |                3 |              9 |         3.00 |
 |  clk_IBUF_BUFG | lectGlucosa[0]                            |                                           |                4 |              9 |         2.25 |
-|  clk_IBUF_BUFG | lectGlucosa[2]                            |                                           |                3 |              9 |         3.00 |
+|  clk_IBUF_BUFG | lectGlucosa[1]                            |                                           |                5 |              9 |         1.80 |
+|  clk_IBUF_BUFG | lectInsulina[3][15]_i_1_n_0               |                                           |                4 |              9 |         2.25 |
 |  clk_IBUF_BUFG | lectInsulina[0][15]_i_1_n_0               |                                           |                4 |              9 |         2.25 |
 |  clk_IBUF_BUFG | lectInsulina[1][15]_i_1_n_0               |                                           |                3 |              9 |         3.00 |
 |  clk_IBUF_BUFG | lectInsulina[2][15]_i_1_n_0               |                                           |                4 |              9 |         2.25 |
-|  clk_IBUF_BUFG | lectInsulina[3][15]_i_1_n_0               |                                           |                4 |              9 |         2.25 |
 |  clk_IBUF_BUFG |                                           |                                           |                7 |             10 |         1.43 |
 |  clk_IBUF_BUFG | p_1_in[31]                                | tiempoinyectoInsLispro[31]_i_1_n_0        |                9 |             30 |         3.33 |
 |  clk_IBUF_BUFG |                                           | lectInsulina[3]1                          |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG | inyectoGlucosa                            | InyectorGlucosa/estado_anterior0          |                8 |             32 |         4.00 |
 |  clk_IBUF_BUFG | inyectoInsLispro                          | InyectorbombaInsLispro/estado_anterior0   |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | inyectoGlucosa                            | InyectorGlucosa/estado_anterior0          |                8 |             32 |         4.00 |
 |  clk_IBUF_BUFG | inyectoInsGlargina                        | InyectorbombaInsGlargina/estado_anterior0 |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG | leoGlucosaOInsulina                       | Cual                                      |                8 |             32 |         4.00 |
 |  clk_IBUF_BUFG | lectInsulina[3]1                          | leoGlucosaOInsulina                       |                8 |             32 |         4.00 |
 |  clk_IBUF_BUFG | lectInsulina[3]1                          | segundos                                  |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | leoGlucosaOInsulina                       | Cual                                      |                8 |             32 |         4.00 |
 |  clk_IBUF_BUFG | nivelGlucemico_reg_n_0_[1]                | Buzzy/divisor                             |                8 |             32 |         4.00 |
 |  clk_IBUF_BUFG | tiempoinyectoGlucosa[0]_i_1_n_0           |                                           |                8 |             32 |         4.00 |
 |  clk_IBUF_BUFG | tiempoinyectoInsGlargina                  | tiempoinyectoInsGlargina[0]_i_1_n_0       |                8 |             32 |         4.00 |

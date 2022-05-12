@@ -127,7 +127,6 @@ set rc [catch {
   create_msg_db write_bitstream.pb
   set_param checkpoint.writeSynthRtdsInDcp 1
   set_param chipscope.maxJobs 4
-  set_param synth.incrementalSynthesisCache C:/Users/andro/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-26448-LAPTOP-9GJB53N6/incrSyn
   open_checkpoint ParCoGli_routed.dcp
   set_property webtalk.parent_dir C:/PracticasVHDL/github/PHR/Version3/PFA/ParCoGli/ParCoGli.cache/wt [current_project]
 set_property TOP ParCoGli [current_fileset]

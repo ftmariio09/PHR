@@ -22,6 +22,9 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
+Library UNISIM;
+use UNISIM.vcomponents.all; -- Para buffers inout
+
 USE WORK.Utiles.ALL;
 
 -- Uncomment the following library declaration if using
@@ -94,6 +97,7 @@ architecture Arquitectura of ParCoGli is
              R : OUT STD_LOGIC_VECTOR(N-1 DOWNTO 0);
              Carry: OUT STD_LOGIC);
     end COMPONENT;
+
     FOR ALL: Comp_N USE ENTITY WORK.Comp_N_Reu(Iterativa);
     FOR ALL: inyector USE ENTITY WORK.inyector(behavior);
     FOR ALL: encendedorBuzzy USE ENTITY WORK.encendedorBuzzy(behavior);
@@ -175,6 +179,11 @@ architecture Arquitectura of ParCoGli is
     SIGNAL ResulSumInsulina, ResulSumGlucosa, AuxSuma1, AuxSuma2, AuxSuma3, AuxSuma4 : STD_LOGIC_VECTOR(15 downto (16-tamComp-1)) := "0000000000"; -- Para el segundo nivel de sumadores, necesitamos 1 bit adicional para evitar posible overflow.
     SIGNAL SumOverflow1, SumOverflow2, SumOverFlowI, SumOverflow3, SumOverflow4, SumOverflowG : STD_LOGIC := '0';
 
+    -- Estas seniales son para el OBUF que luego se extenderia en la ESP-32
+    SIGNAL o: std_logic; -- Para la salida out del buffer
+    SIGNAL i: std_logic := '0'; -- Para la entrada del OBUF, se deberia conectar a la logica que controla el puerto out.
+    SIGNAL t: std_logic := '1'; -- control de la triestado, un 1 es que funciona como input, 0 como output
+    -- Ademas esta la salida io, que se conecta al pin inout superior: datAdicionales
 begin
     uut:   xadc_wiz_0 PORT MAP(
             edaddr_in,
@@ -222,6 +231,16 @@ begin
     SumadorSistema3: SumToN GENERIC MAP (tamComp) PORT MAP (lectGlucosa(0), lectGlucosa(1), ResulSum3, SumOverflow3); -- Estos 3 son para lo mismo
     SumadorSistema4: SumToN GENERIC MAP (tamComp) PORT MAP (lectGlucosa(2), lectGlucosa(3), ResulSum4, SumOverflow4); -- Pero en vez de para insulina
     Media2: SumToN GENERIC MAP (tamComp+1) PORT MAP (AuxSuma3, AuxSuma4, ResulSumGlucosa, SumOverflowG); -- Son para glucosa
+
+    -- Lo de abajo es para que datAdicionales funcione como inout, con la instanciacion recomendada por los manuales de Xilinx.
+    -- Por supuesto, como no tiene un componente al que adherirse, generará warnings, así que se queda comentado hasta que implementemos el ESP-32
+--    IOBUF_inst : IOBUF
+--    port map (
+--       O => variableConfigESP(15),   -- 1-bit output: Buffer output
+--       I => i,   -- 1-bit input: Buffer input
+--       IO => datAdicionales, -- 1-bit inout: Buffer inout (connect directly to top-level port)
+--       T => t    -- 1-bit input: 3-state enable input
+--    );
 
     process (sNGlargina, sNLispro, sNGlucosa, clk) -- PROCESO RELACIONADO CON LEDES RGB
         variable queLefalta : std_logic_vector(1 downto 0); -- Consideramos si falta insulina o glucosa, lo revisa periódicamente o cuando uno cambie.
@@ -416,15 +435,15 @@ begin
     --        else
     --            end if;
     --    end process;
-    process (datAdicionales, variableConfigESP) -- PROCESO DE LA ESP32 - SE DEJA PARA EL SIGUIENTE SEMESTRE
+    process (datAdicionales, variableConfigESP, o) -- PROCESO DE LA ESP32 - SE DEJA PARA EL SIGUIENTE SEMESTRE
     begin
         -- Aqui es donde hariamos algo con esto mediante ESP-32.
         -- Esto es un STUB 
-        variableConfigESP <= variableConfigESP(14 downto 0)&datAdicionales;
-        if (variableConfigESP(14) = '1') then
+        variableConfigESP(14 downto 0) <= variableConfigESP(13 downto 0)&datAdicionales;
+        if (variableConfigESP(14) = '1' and o = '1') then
             --Ejecutar accion leyendo valores establecidos por variableConfigEspecial
-            --Resetear varaible config
-            variableConfigESP <= "0000000000000000";
+            --Resetear variable config
+            variableConfigESP(14 downto 0) <= "000000000000000";
         --Enviar respuesta
         --datAdicionales <= '0';
         else
