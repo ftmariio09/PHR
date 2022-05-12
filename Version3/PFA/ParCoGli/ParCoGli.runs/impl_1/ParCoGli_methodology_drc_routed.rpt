@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.2 (win64) Build 3367213 Tue Oct 19 02:48:09 MDT 2021
-| Date         : Wed May 11 16:44:33 2022
+| Date         : Thu May 12 13:48:51 2022
 | Host         : LAPTOP-9GJB53N6 running 64-bit major release  (build 9200)
 | Command      : report_methodology -file ParCoGli_methodology_drc_routed.rpt -pb ParCoGli_methodology_drc_routed.pb -rpx ParCoGli_methodology_drc_routed.rpx
 | Design       : ParCoGli
@@ -23,13 +23,12 @@ Table of Contents
           Floorplan: checkpoint_ParCoGli
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 111
+             Violations found: 23
 +-----------+----------+----------------------------------+------------+
 | Rule      | Severity | Description                      | Violations |
 +-----------+----------+----------------------------------+------------+
 | HPDR-1    | Warning  | Port pin direction inconsistency | 1          |
-| TIMING-18 | Warning  | Missing input or output delay    | 13         |
-| TIMING-20 | Warning  | Non-clocked latch                | 97         |
+| TIMING-18 | Warning  | Missing input or output delay    | 22         |
 +-----------+----------+----------------------------------+------------+
 
 2. REPORT DETAILS
@@ -104,489 +103,49 @@ Missing input or output delay
 An output delay is missing on buzzer relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#1 Warning
-Non-clocked latch  
-The latch SumA1_reg[10] cannot be properly analyzed as its control pin SumA1_reg[10]/G is not reached by a timing clock
+TIMING-18#14 Warning
+Missing input or output delay  
+An output delay is missing on nivelGlucosaE[0] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#2 Warning
-Non-clocked latch  
-The latch SumA1_reg[11] cannot be properly analyzed as its control pin SumA1_reg[11]/G is not reached by a timing clock
+TIMING-18#15 Warning
+Missing input or output delay  
+An output delay is missing on nivelGlucosaE[1] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#3 Warning
-Non-clocked latch  
-The latch SumA1_reg[12] cannot be properly analyzed as its control pin SumA1_reg[12]/G is not reached by a timing clock
+TIMING-18#16 Warning
+Missing input or output delay  
+An output delay is missing on nivelGlucosaE[2] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#4 Warning
-Non-clocked latch  
-The latch SumA1_reg[13] cannot be properly analyzed as its control pin SumA1_reg[13]/G is not reached by a timing clock
+TIMING-18#17 Warning
+Missing input or output delay  
+An output delay is missing on nivelGlucosaE[3] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#5 Warning
-Non-clocked latch  
-The latch SumA1_reg[14] cannot be properly analyzed as its control pin SumA1_reg[14]/G is not reached by a timing clock
+TIMING-18#18 Warning
+Missing input or output delay  
+An output delay is missing on nivelGlucosaE[4] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#6 Warning
-Non-clocked latch  
-The latch SumA1_reg[15] cannot be properly analyzed as its control pin SumA1_reg[15]/G is not reached by a timing clock
+TIMING-18#19 Warning
+Missing input or output delay  
+An output delay is missing on nivelGlucosaE[5] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#7 Warning
-Non-clocked latch  
-The latch SumA1_reg[5] cannot be properly analyzed as its control pin SumA1_reg[5]/G is not reached by a timing clock
+TIMING-18#20 Warning
+Missing input or output delay  
+An output delay is missing on nivelGlucosaE[6] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#8 Warning
-Non-clocked latch  
-The latch SumA1_reg[6] cannot be properly analyzed as its control pin SumA1_reg[6]/G is not reached by a timing clock
+TIMING-18#21 Warning
+Missing input or output delay  
+An output delay is missing on nivelGlucosaE[7] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
-TIMING-20#9 Warning
-Non-clocked latch  
-The latch SumA1_reg[7] cannot be properly analyzed as its control pin SumA1_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#10 Warning
-Non-clocked latch  
-The latch SumA1_reg[8] cannot be properly analyzed as its control pin SumA1_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#11 Warning
-Non-clocked latch  
-The latch SumA1_reg[9] cannot be properly analyzed as its control pin SumA1_reg[9]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#12 Warning
-Non-clocked latch  
-The latch SumA2_reg[10] cannot be properly analyzed as its control pin SumA2_reg[10]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#13 Warning
-Non-clocked latch  
-The latch SumA2_reg[11] cannot be properly analyzed as its control pin SumA2_reg[11]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#14 Warning
-Non-clocked latch  
-The latch SumA2_reg[12] cannot be properly analyzed as its control pin SumA2_reg[12]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#15 Warning
-Non-clocked latch  
-The latch SumA2_reg[13] cannot be properly analyzed as its control pin SumA2_reg[13]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#16 Warning
-Non-clocked latch  
-The latch SumA2_reg[14] cannot be properly analyzed as its control pin SumA2_reg[14]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#17 Warning
-Non-clocked latch  
-The latch SumA2_reg[15] cannot be properly analyzed as its control pin SumA2_reg[15]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#18 Warning
-Non-clocked latch  
-The latch SumA2_reg[5] cannot be properly analyzed as its control pin SumA2_reg[5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#19 Warning
-Non-clocked latch  
-The latch SumA2_reg[6] cannot be properly analyzed as its control pin SumA2_reg[6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#20 Warning
-Non-clocked latch  
-The latch SumA2_reg[7] cannot be properly analyzed as its control pin SumA2_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#21 Warning
-Non-clocked latch  
-The latch SumA2_reg[8] cannot be properly analyzed as its control pin SumA2_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#22 Warning
-Non-clocked latch  
-The latch SumA2_reg[9] cannot be properly analyzed as its control pin SumA2_reg[9]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#23 Warning
-Non-clocked latch  
-The latch SumA3_reg[10] cannot be properly analyzed as its control pin SumA3_reg[10]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#24 Warning
-Non-clocked latch  
-The latch SumA3_reg[11] cannot be properly analyzed as its control pin SumA3_reg[11]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#25 Warning
-Non-clocked latch  
-The latch SumA3_reg[12] cannot be properly analyzed as its control pin SumA3_reg[12]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#26 Warning
-Non-clocked latch  
-The latch SumA3_reg[13] cannot be properly analyzed as its control pin SumA3_reg[13]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#27 Warning
-Non-clocked latch  
-The latch SumA3_reg[14] cannot be properly analyzed as its control pin SumA3_reg[14]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#28 Warning
-Non-clocked latch  
-The latch SumA3_reg[15] cannot be properly analyzed as its control pin SumA3_reg[15]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#29 Warning
-Non-clocked latch  
-The latch SumA3_reg[5] cannot be properly analyzed as its control pin SumA3_reg[5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#30 Warning
-Non-clocked latch  
-The latch SumA3_reg[6] cannot be properly analyzed as its control pin SumA3_reg[6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#31 Warning
-Non-clocked latch  
-The latch SumA3_reg[7] cannot be properly analyzed as its control pin SumA3_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#32 Warning
-Non-clocked latch  
-The latch SumA3_reg[8] cannot be properly analyzed as its control pin SumA3_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#33 Warning
-Non-clocked latch  
-The latch SumA3_reg[9] cannot be properly analyzed as its control pin SumA3_reg[9]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#34 Warning
-Non-clocked latch  
-The latch SumA4_reg[10] cannot be properly analyzed as its control pin SumA4_reg[10]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#35 Warning
-Non-clocked latch  
-The latch SumA4_reg[11] cannot be properly analyzed as its control pin SumA4_reg[11]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#36 Warning
-Non-clocked latch  
-The latch SumA4_reg[12] cannot be properly analyzed as its control pin SumA4_reg[12]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#37 Warning
-Non-clocked latch  
-The latch SumA4_reg[13] cannot be properly analyzed as its control pin SumA4_reg[13]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#38 Warning
-Non-clocked latch  
-The latch SumA4_reg[14] cannot be properly analyzed as its control pin SumA4_reg[14]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#39 Warning
-Non-clocked latch  
-The latch SumA4_reg[15] cannot be properly analyzed as its control pin SumA4_reg[15]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#40 Warning
-Non-clocked latch  
-The latch SumA4_reg[5] cannot be properly analyzed as its control pin SumA4_reg[5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#41 Warning
-Non-clocked latch  
-The latch SumA4_reg[6] cannot be properly analyzed as its control pin SumA4_reg[6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#42 Warning
-Non-clocked latch  
-The latch SumA4_reg[7] cannot be properly analyzed as its control pin SumA4_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#43 Warning
-Non-clocked latch  
-The latch SumA4_reg[8] cannot be properly analyzed as its control pin SumA4_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#44 Warning
-Non-clocked latch  
-The latch SumA4_reg[9] cannot be properly analyzed as its control pin SumA4_reg[9]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#45 Warning
-Non-clocked latch  
-The latch SumB1_reg[10] cannot be properly analyzed as its control pin SumB1_reg[10]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#46 Warning
-Non-clocked latch  
-The latch SumB1_reg[11] cannot be properly analyzed as its control pin SumB1_reg[11]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#47 Warning
-Non-clocked latch  
-The latch SumB1_reg[12] cannot be properly analyzed as its control pin SumB1_reg[12]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#48 Warning
-Non-clocked latch  
-The latch SumB1_reg[13] cannot be properly analyzed as its control pin SumB1_reg[13]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#49 Warning
-Non-clocked latch  
-The latch SumB1_reg[5] cannot be properly analyzed as its control pin SumB1_reg[5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#50 Warning
-Non-clocked latch  
-The latch SumB1_reg[6] cannot be properly analyzed as its control pin SumB1_reg[6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#51 Warning
-Non-clocked latch  
-The latch SumB1_reg[7] cannot be properly analyzed as its control pin SumB1_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#52 Warning
-Non-clocked latch  
-The latch SumB1_reg[8] cannot be properly analyzed as its control pin SumB1_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#53 Warning
-Non-clocked latch  
-The latch SumB1_reg[9] cannot be properly analyzed as its control pin SumB1_reg[9]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#54 Warning
-Non-clocked latch  
-The latch SumB2_reg[10] cannot be properly analyzed as its control pin SumB2_reg[10]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#55 Warning
-Non-clocked latch  
-The latch SumB2_reg[11] cannot be properly analyzed as its control pin SumB2_reg[11]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#56 Warning
-Non-clocked latch  
-The latch SumB2_reg[12] cannot be properly analyzed as its control pin SumB2_reg[12]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#57 Warning
-Non-clocked latch  
-The latch SumB2_reg[13] cannot be properly analyzed as its control pin SumB2_reg[13]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#58 Warning
-Non-clocked latch  
-The latch SumB2_reg[5] cannot be properly analyzed as its control pin SumB2_reg[5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#59 Warning
-Non-clocked latch  
-The latch SumB2_reg[6] cannot be properly analyzed as its control pin SumB2_reg[6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#60 Warning
-Non-clocked latch  
-The latch SumB2_reg[7] cannot be properly analyzed as its control pin SumB2_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#61 Warning
-Non-clocked latch  
-The latch SumB2_reg[8] cannot be properly analyzed as its control pin SumB2_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#62 Warning
-Non-clocked latch  
-The latch SumB2_reg[9] cannot be properly analyzed as its control pin SumB2_reg[9]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#63 Warning
-Non-clocked latch  
-The latch SumB3_reg[10] cannot be properly analyzed as its control pin SumB3_reg[10]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#64 Warning
-Non-clocked latch  
-The latch SumB3_reg[11] cannot be properly analyzed as its control pin SumB3_reg[11]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#65 Warning
-Non-clocked latch  
-The latch SumB3_reg[12] cannot be properly analyzed as its control pin SumB3_reg[12]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#66 Warning
-Non-clocked latch  
-The latch SumB3_reg[13] cannot be properly analyzed as its control pin SumB3_reg[13]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#67 Warning
-Non-clocked latch  
-The latch SumB3_reg[5] cannot be properly analyzed as its control pin SumB3_reg[5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#68 Warning
-Non-clocked latch  
-The latch SumB3_reg[6] cannot be properly analyzed as its control pin SumB3_reg[6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#69 Warning
-Non-clocked latch  
-The latch SumB3_reg[7] cannot be properly analyzed as its control pin SumB3_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#70 Warning
-Non-clocked latch  
-The latch SumB3_reg[8] cannot be properly analyzed as its control pin SumB3_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#71 Warning
-Non-clocked latch  
-The latch SumB3_reg[9] cannot be properly analyzed as its control pin SumB3_reg[9]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#72 Warning
-Non-clocked latch  
-The latch SumB4_reg[10] cannot be properly analyzed as its control pin SumB4_reg[10]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#73 Warning
-Non-clocked latch  
-The latch SumB4_reg[11] cannot be properly analyzed as its control pin SumB4_reg[11]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#74 Warning
-Non-clocked latch  
-The latch SumB4_reg[12] cannot be properly analyzed as its control pin SumB4_reg[12]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#75 Warning
-Non-clocked latch  
-The latch SumB4_reg[13] cannot be properly analyzed as its control pin SumB4_reg[13]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#76 Warning
-Non-clocked latch  
-The latch SumB4_reg[5] cannot be properly analyzed as its control pin SumB4_reg[5]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#77 Warning
-Non-clocked latch  
-The latch SumB4_reg[6] cannot be properly analyzed as its control pin SumB4_reg[6]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#78 Warning
-Non-clocked latch  
-The latch SumB4_reg[7] cannot be properly analyzed as its control pin SumB4_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#79 Warning
-Non-clocked latch  
-The latch SumB4_reg[8] cannot be properly analyzed as its control pin SumB4_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#80 Warning
-Non-clocked latch  
-The latch SumB4_reg[9] cannot be properly analyzed as its control pin SumB4_reg[9]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#81 Warning
-Non-clocked latch  
-The latch edaddr_in_reg[3] cannot be properly analyzed as its control pin edaddr_in_reg[3]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#82 Warning
-Non-clocked latch  
-The latch nivelGlucemico_reg[0] cannot be properly analyzed as its control pin nivelGlucemico_reg[0]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#83 Warning
-Non-clocked latch  
-The latch nivelGlucemico_reg[1] cannot be properly analyzed as its control pin nivelGlucemico_reg[1]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#84 Warning
-Non-clocked latch  
-The latch nivelGlucosa_reg[10] cannot be properly analyzed as its control pin nivelGlucosa_reg[10]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#85 Warning
-Non-clocked latch  
-The latch nivelGlucosa_reg[11] cannot be properly analyzed as its control pin nivelGlucosa_reg[11]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#86 Warning
-Non-clocked latch  
-The latch nivelGlucosa_reg[12] cannot be properly analyzed as its control pin nivelGlucosa_reg[12]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#87 Warning
-Non-clocked latch  
-The latch nivelGlucosa_reg[13] cannot be properly analyzed as its control pin nivelGlucosa_reg[13]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#88 Warning
-Non-clocked latch  
-The latch nivelGlucosa_reg[7] cannot be properly analyzed as its control pin nivelGlucosa_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#89 Warning
-Non-clocked latch  
-The latch nivelGlucosa_reg[8] cannot be properly analyzed as its control pin nivelGlucosa_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#90 Warning
-Non-clocked latch  
-The latch nivelGlucosa_reg[9] cannot be properly analyzed as its control pin nivelGlucosa_reg[9]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#91 Warning
-Non-clocked latch  
-The latch nivelInsulina_reg[10] cannot be properly analyzed as its control pin nivelInsulina_reg[10]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#92 Warning
-Non-clocked latch  
-The latch nivelInsulina_reg[11] cannot be properly analyzed as its control pin nivelInsulina_reg[11]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#93 Warning
-Non-clocked latch  
-The latch nivelInsulina_reg[12] cannot be properly analyzed as its control pin nivelInsulina_reg[12]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#94 Warning
-Non-clocked latch  
-The latch nivelInsulina_reg[13] cannot be properly analyzed as its control pin nivelInsulina_reg[13]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#95 Warning
-Non-clocked latch  
-The latch nivelInsulina_reg[7] cannot be properly analyzed as its control pin nivelInsulina_reg[7]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#96 Warning
-Non-clocked latch  
-The latch nivelInsulina_reg[8] cannot be properly analyzed as its control pin nivelInsulina_reg[8]/G is not reached by a timing clock
-Related violations: <none>
-
-TIMING-20#97 Warning
-Non-clocked latch  
-The latch nivelInsulina_reg[9] cannot be properly analyzed as its control pin nivelInsulina_reg[9]/G is not reached by a timing clock
+TIMING-18#22 Warning
+Missing input or output delay  
+An output delay is missing on nivelGlucosaE[8] relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 

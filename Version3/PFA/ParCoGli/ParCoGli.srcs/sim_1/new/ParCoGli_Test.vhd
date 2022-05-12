@@ -37,14 +37,14 @@ end ParCoGli_Test;
 
 architecture Testeo of ParCoGli_Test is
     component parche
-    Port (sNGlargina, sNLispro, sNGlucosa: IN std_logic; -- Entradas digitales
-         VpIn, VnIn, vauxp6, vauxn6, vauxp14, vauxn14 : in std_logic; -- vaux 6 es sensor insulina, vaux 14 es sensor glucosa: sGlucosa, sInsulina, 
-         datAdicionales : INOUT std_logic;  --Datos adicionales -EN DESARROLLO CON LA ESP-32
-         ledRGB : OUT std_logic_vector (2 downto 0);  -- Salidas del RGB
-         buzzer: OUT std_logic;
-         bombaInsGlargina, bombaInsLispro, bombaGlucosa : OUT std_logic_vector(3 downto 0);  -- Salidas del Buzzer y actuadores
-         clk : in std_logic -- Senial de reloj
-        );
+        Port (sNGlargina, sNLispro, sNGlucosa: IN std_logic; -- Entradas digitales
+             VpIn, VnIn, vauxp6, vauxn6, vauxp14, vauxn14 : in std_logic; -- vaux 6 es sensor insulina, vaux 14 es sensor glucosa: sGlucosa, sInsulina, 
+             datAdicionales : INOUT std_logic;  --Datos adicionales -EN DESARROLLO CON LA ESP-32
+             ledRGB : OUT std_logic_vector (2 downto 0);  -- Salidas del RGB
+             buzzer: OUT std_logic;
+             bombaInsGlargina, bombaInsLispro, bombaGlucosa : OUT std_logic_vector(3 downto 0);  -- Salidas del Buzzer y actuadores
+             clk : in std_logic -- Senial de reloj
+            );
     end component;
     FOR ALL: parche USE ENTITY WORK.ParCoGli(Arquitectura);
     -- POR HACER
@@ -62,11 +62,11 @@ begin
     process
         variable i : integer := 0;
     begin
-        for i in 0 to 127 loop
+        for i in 0 to 50000000 loop
             clok <= '0';
-            wait for 5 ns;
+            wait for 1 ns;
             clok <= '1';
-            wait for 15 ns;
+            wait for 1 ns;
         end loop;
     end process;
     process
@@ -86,6 +86,26 @@ begin
             wait for 15 ns;
             lispro <= '1';
             wait for 15 ns;
+        end loop;
+    end process;
+
+    process
+        variable j : integer := 0;
+    begin
+        for j in 0 to 127 loop
+            wait for 50 ns;
+            vauxp6 <= '0';
+            wait for 50 ns;
+            vauxp6 <= '1';
+            wait for 50 ns;
+            vauxp6 <= '0';
+            wait for 50 ns;
+            vauxp14 <= '1';
+            wait for 50 ns;
+            vauxp14 <= '0';
+            wait for 50 ns;
+            vauxp6 <= '1';
+            wait for 50 ns;
         end loop;
     end process;
 end Testeo;

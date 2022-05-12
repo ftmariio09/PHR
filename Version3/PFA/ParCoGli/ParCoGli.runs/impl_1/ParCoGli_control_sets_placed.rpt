@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.2 (win64) Build 3367213 Tue Oct 19 02:48:09 MDT 2021
-| Date         : Wed May 11 16:44:11 2022
+| Date         : Thu May 12 13:48:30 2022
 | Host         : LAPTOP-9GJB53N6 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file ParCoGli_control_sets_placed.rpt
 | Design       : ParCoGli
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    22 |
-|    Minimum number of control sets                        |    22 |
+| Total control sets                                       |    23 |
+|    Minimum number of control sets                        |    23 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    33 |
+| Unused register locations in slices containing registers |    64 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    22 |
-| >= 0 to < 4        |     2 |
+| Total control sets |    23 |
+| >= 0 to < 4        |     0 |
 | >= 4 to < 6        |     0 |
-| >= 6 to < 8        |     2 |
-| >= 8 to < 10       |     4 |
-| >= 10 to < 12      |     0 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |    11 |
+| >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |    14 |
+| >= 16              |    11 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,43 +58,44 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             105 |           37 |
+| No           | No                    | No                     |              10 |            7 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              32 |            8 |
-| Yes          | No                    | No                     |              56 |           14 |
+| Yes          | No                    | No                     |             128 |           44 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             254 |           65 |
+| Yes          | Yes                   | No                     |             286 |           73 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+--------------------------------+-------------------------------------------+-------------------------------------------+------------------+----------------+--------------+
-|          Clock Signal          |               Enable Signal               |              Set/Reset Signal             | Slice Load Count | Bel Load Count | Bels / Slice |
-+--------------------------------+-------------------------------------------+-------------------------------------------+------------------+----------------+--------------+
-|  edaddr_in_reg[3]_i_1_n_0      |                                           |                                           |                1 |              1 |         1.00 |
-|  nivelGlucemico__0             |                                           |                                           |                1 |              2 |         2.00 |
-|  nivelGlucosa_reg[13]_i_2_n_0  |                                           |                                           |                3 |              7 |         2.33 |
-|  nivelInsulina_reg[13]_i_2_n_0 |                                           |                                           |                4 |              7 |         1.75 |
-|  clk_IBUF_BUFG                 |                                           |                                           |                5 |              8 |         1.60 |
-|  clk_IBUF_BUFG                 | InyectorGlucosa/estado_anterior0          |                                           |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG                 | InyectorbombaInsGlargina/estado_anterior0 |                                           |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG                 | InyectorbombaInsLispro/estado_anterior0   |                                           |                2 |              8 |         4.00 |
-|  SumA2_reg[15]_i_2_n_0         |                                           |                                           |                6 |             20 |         3.33 |
-|  SumA3_reg[15]_i_2_n_0         |                                           |                                           |                6 |             20 |         3.33 |
-|  SumA4_reg[15]_i_2_n_0         |                                           |                                           |                5 |             20 |         4.00 |
-|  SumA1_reg[15]_i_2_n_0         |                                           |                                           |                6 |             20 |         3.33 |
-|  clk_IBUF_BUFG                 | tiempoinyectoInsLispro[31]_i_2_n_0        | tiempoinyectoInsLispro[31]_i_1_n_0        |                9 |             30 |         3.33 |
-|  clk_IBUF_BUFG                 |                                           | leoGlucosaOInsulina0                      |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG                 | nivelGlucemico[1]                         | Buzzy/divisor                             |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG                 | leoGlucosaOInsulina0                      | leoGlucosaOInsulina                       |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG                 | leoGlucosaOInsulina0                      | segundos                                  |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG                 | inyectoInsGlargina                        | InyectorbombaInsGlargina/estado_anterior0 |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG                 | inyectoGlucosa                            | InyectorGlucosa/estado_anterior0          |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG                 | inyectoInsLispro                          | InyectorbombaInsLispro/estado_anterior0   |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG                 | tiempoinyectoGlucosa[0]_i_1_n_0           |                                           |                8 |             32 |         4.00 |
-|  clk_IBUF_BUFG                 | tiempoinyectoInsGlargina                  | tiempoinyectoInsGlargina[0]_i_1_n_0       |                8 |             32 |         4.00 |
-+--------------------------------+-------------------------------------------+-------------------------------------------+------------------+----------------+--------------+
++----------------+-------------------------------------------+-------------------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |               Enable Signal               |              Set/Reset Signal             | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+-------------------------------------------+-------------------------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG | InyectorGlucosa/estado_anterior0          |                                           |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | InyectorbombaInsGlargina/estado_anterior0 |                                           |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | InyectorbombaInsLispro/estado_anterior0   |                                           |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | lectGlucosa[1]                            |                                           |                5 |              9 |         1.80 |
+|  clk_IBUF_BUFG | lectGlucosa[3]                            |                                           |                3 |              9 |         3.00 |
+|  clk_IBUF_BUFG | lectGlucosa[0]                            |                                           |                4 |              9 |         2.25 |
+|  clk_IBUF_BUFG | lectGlucosa[2]                            |                                           |                3 |              9 |         3.00 |
+|  clk_IBUF_BUFG | lectInsulina[0][15]_i_1_n_0               |                                           |                4 |              9 |         2.25 |
+|  clk_IBUF_BUFG | lectInsulina[1][15]_i_1_n_0               |                                           |                3 |              9 |         3.00 |
+|  clk_IBUF_BUFG | lectInsulina[2][15]_i_1_n_0               |                                           |                4 |              9 |         2.25 |
+|  clk_IBUF_BUFG | lectInsulina[3][15]_i_1_n_0               |                                           |                4 |              9 |         2.25 |
+|  clk_IBUF_BUFG |                                           |                                           |                7 |             10 |         1.43 |
+|  clk_IBUF_BUFG | p_1_in[31]                                | tiempoinyectoInsLispro[31]_i_1_n_0        |                9 |             30 |         3.33 |
+|  clk_IBUF_BUFG |                                           | lectInsulina[3]1                          |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | inyectoGlucosa                            | InyectorGlucosa/estado_anterior0          |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | inyectoInsLispro                          | InyectorbombaInsLispro/estado_anterior0   |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | inyectoInsGlargina                        | InyectorbombaInsGlargina/estado_anterior0 |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | leoGlucosaOInsulina                       | Cual                                      |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | lectInsulina[3]1                          | leoGlucosaOInsulina                       |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | lectInsulina[3]1                          | segundos                                  |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | nivelGlucemico_reg_n_0_[1]                | Buzzy/divisor                             |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | tiempoinyectoGlucosa[0]_i_1_n_0           |                                           |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | tiempoinyectoInsGlargina                  | tiempoinyectoInsGlargina[0]_i_1_n_0       |                8 |             32 |         4.00 |
++----------------+-------------------------------------------+-------------------------------------------+------------------+----------------+--------------+
 
 

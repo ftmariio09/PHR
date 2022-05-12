@@ -109,19 +109,23 @@ architecture Arquitectura of ParCoGli is
     constant limitehiperglucemicoayunas : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := ent2bin(99, tamComp); -- >100 mg por dl es hiperglucemia en ayunas
     constant limitehiperglucemicocomidas : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := ent2bin(199, tamComp); -- >200 mg por dl es hiperglucemia tras las comidas
     constant insulinaLetal : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := ent2bin(15, tamComp); -- No inyectar insulina si la insulina ya está por encima de 15 en sangre, podría ser letal.
-    constant cerosDeLectura : STD_LOGIC_VECTOR (15 downto (16-tamComp-2)) := "00000000000";
+    constant cerosDeLectura : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := "000000000";
+    constant inicialPromedioGlucosa : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := "001010101"; -- Asumimos que inicialmente, para la media, se considera un nivel inicial promedio, que no causa que ningun dispositivo actue
+    constant inicialPromedioInsulina : STD_LOGIC_VECTOR (15 downto (16-tamComp)) := "000011110"; -- Asumimos que casi esta en insulina letal para que las primeras lecturas se tengan en cuenta (así si hay letalidad de insulina, no se inyecta)
 
 
-    SIGNAL ledRGBint :std_logic_vector (2 downto 0) := "010"; -- Del Led RGB
     signal faltaNInsulina : std_logic := '0';
     signal faltaNGlucosa : std_logic := '0';
-    
-    Signal nivelGlucemicoPrevio : STD_LOGIC_VECTOR (1 downto 0) := "01"; -- Para que siempre sea diferente la primera vez tiene el valor 01, lectura anterior del nivel glucemico.
-    Signal nivelGlucemico : STD_LOGIC_VECTOR (1 downto 0) := "00"; -- Nivel glucemico que la ultima lectura ha dado.
 
-    TYPE matriz IS ARRAY (4 downto 0) of std_logic_vector(15 downto (16-tamComp-2));
-    -- Usamos la matriz para guardar los valores para calculos, para ello guardamos en las N-1 filas el valor leído, y en la última la suma, que se divide por 4 (entendido como mover el resultado dos a la derecha)
-    Signal lectInsulina, lectGlucosa: matriz;
+    Signal nivelGlucemicoPrevio : STD_LOGIC_VECTOR (1 downto 0) := "01"; -- Para que siempre sea diferente la primera vez tiene el valor 01, lectura anterior del nivel glucemico.
+    Signal nivelGlucemico : STD_LOGIC_VECTOR (1 downto 0) := normal; -- Nivel glucemico que la ultima lectura ha dado. Asumimos que inicial es normal
+
+    TYPE matriz IS ARRAY (3 downto 0) of std_logic_vector(15 downto (16-tamComp));
+    -- Usamos la matriz para guardar los valores para calculos de la media, escribiendo el resultado del ciclo t en el elemento i, y el t+1 en el elemento i+1, actuando casi como un array ciclico.
+    Signal lectInsulina: matriz :=((others=> (inicialPromedioInsulina))); -- Incializar matriz para tener la media lista en los primeros ciclos
+    Signal lectGlucosa: matriz := ((others=> (inicialPromedioGlucosa))); -- Incializar matriz para tener la media lista en los primeros ciclos
+    SIGNAL Cual : integer := 3; -- Me dice cual elemento de las dos matrices a sobreescribir, si 0, 1, 2 o 3
+
     Signal nivelInsulina, nivelGlucosa: STD_LOGIC_VECTOR (15 downto (16-tamComp)) := "000000000";
     Signal resultado_int : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
     Signal dummy_int : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
@@ -135,8 +139,8 @@ architecture Arquitectura of ParCoGli is
     -- Esto va de 00h a 3Fh son registros de solo lectura, de un total de 00h a 7Fh
     -- 
     -- Para mas información, ver paginas 39 a 39 de https://docs.xilinx.com/v/u/en-US/ug480_7Series_XADC
-    Signal e16daddr_in : STD_LOGIC_VECTOR (6 downto 0) := "0010110"; -- Son la MUX_address, es el del vauxp6
-    Signal e1Edaddr_in : STD_LOGIC_VECTOR (6 downto 0) := "0011110"; -- Son la MUX_address, es el del vauxp14
+    constant e16daddr_in : STD_LOGIC_VECTOR (6 downto 0) := "0010110"; -- Son la MUX_address, es el del vauxp6
+    constant e1Edaddr_in : STD_LOGIC_VECTOR (6 downto 0) := "0011110"; -- Son la MUX_address, es el del vauxp14
     Signal eden_in: STD_LOGIC:='1'; -- Lo de abajo son mas parametros para el modulo XADC
     Signal edrdy_out: STD_LOGIC;
     Signal edwe_in : STD_LOGIC := '0';
@@ -145,7 +149,7 @@ architecture Arquitectura of ParCoGli is
     Signal terminadoConv : STD_LOGIC := '0';
     Signal ereset_in : STD_LOGIC := '0'; -- Senial reseteo XADC
     Signal ocupado, alarma : std_logic; -- Seniales de ocupado y alarma
-    
+
     Signal divisor : integer :=0; -- Divisor de frecuencias
     Signal leoGlucosaOInsulina : integer := 0; -- A pesar de su nombre, tambien se usa para saber en que fase del cicl oestamos
 
@@ -164,11 +168,13 @@ architecture Arquitectura of ParCoGli is
     SIGNAL tiempoInyeccion : integer := 10; -- Supongamos que un inyector tarda unas 10 fases (eso son 5 segundos) en descargar su carga. Estamos simulándolo.
 
     SIGNAL variableConfigESP : std_logic_vector(15 downto 0) := "0000000000000000"; -- Usaremos todo ceros para decir no hay comandos que recibir, es del ESP
-    
+
     SIGNAL errorFases : STD_LOGIC := '0'; -- En un futuro, para informar de un tipo de error.
-    
-    SIGNAL SumA1, SumB1, ResulSum1, SumA2, SumB2, ResulSum2, SumA3, SumB3, ResulSum3, SumA4, SumB4, ResulSum4 : STD_LOGIC_VECTOR(15 downto (16-tamComp-2)) := "00000000000";
-    SIGNAL SumOverflow1, SumOverflow2, SumOverflow3, SumOverflow4 : STD_LOGIC := '0';
+
+    SIGNAL SumA1, SumB1, ResulSum1, SumA2, SumB2, ResulSum2, SumA3, SumB3, ResulSum3, SumA4, SumB4, ResulSum4 : STD_LOGIC_VECTOR(15 downto (16-tamComp)) := "000000000"; -- Para los sumadores
+    SIGNAL ResulSumInsulina, ResulSumGlucosa, AuxSuma1, AuxSuma2, AuxSuma3, AuxSuma4 : STD_LOGIC_VECTOR(15 downto (16-tamComp-1)) := "0000000000"; -- Para el segundo nivel de sumadores, necesitamos 1 bit adicional para evitar posible overflow.
+    SIGNAL SumOverflow1, SumOverflow2, SumOverFlowI, SumOverflow3, SumOverflow4, SumOverflowG : STD_LOGIC := '0';
+
 begin
     uut:   xadc_wiz_0 PORT MAP(
             edaddr_in,
@@ -190,6 +196,18 @@ begin
             alarma,
             VpIn,
             VnIn);
+
+    AuxSuma1 <=  SumOverflow1&ResulSum1; --Para que el Vivado no de un warning de que los PORT MAP deben tener nombres estaticos o expresiones globalmente estaticas,
+    AuxSuma2 <=  SumOverflow2&ResulSum2; --  en realidad esto no da problemas en Vivado, pero si en otras herramientas. 
+    AuxSuma3 <=  SumOverflow3&ResulSum3; -- Esto se debe hacer para todos los valores intermedios 
+    AuxSuma4 <=  SumOverflow4&ResulSum4; -- que deseemos poner.
+    nivelInsulina <= SumOverflowI&ResulSumInsulina(15 downto (16-tamComp+1)); -- Tambien incluye los valores de insulina
+    nivelGlucosa <= SumOverflowG&ResulSumGlucosa(15 downto (16-tamComp+1));  -- y de glucosa promedio
+    -- Hacemos la division de insulina (y la de glucosa) entre 4, que equivale a quitar los dos bits de la derecha y rellenar con ceros a la izquierda hasta tener el tamanio exacto
+    -- Como en este caso tanto nivelInsulina como nivelGlucosa son ya de por sí 2 bits más cortos (9 bits) que la longitud del vector de 10 bits y su overflow, no aniadimos ceros adicionales a la izq.
+    nivelGlucosaE <= SumOverflowG&ResulSumGlucosa(15 downto (16-tamComp+1));
+    -- LO DE NIVEL GLUCOSA ESTA SOLO PARA DEBUGGING, BORRALO/COMENTALO LUEGO
+
     CHipo: Comp_N GENERIC MAP (tamComp) PORT MAP (nivelGlucosa, limitehipoglucemico, G_1, E_1, L_1, G, E, L);
     CHiper: Comp_N GENERIC MAP (tamComp) PORT MAP (limitehiperglucemicoayunas, nivelGlucosa, G_2, E_2, L_2, G2, E2, L2);
     CInsulinaLetal: Comp_N GENERIC MAP (tamComp) PORT MAP (nivelInsulina, insulinaLetal, G_3, E_3, L_3, G3, E3, L3);
@@ -197,21 +215,25 @@ begin
     InyectorbombaInsGlargina: inyector PORT MAP (inyectoInsGlargina, clk, bombaInsGlargina);
     InyectorbombaInsLispro: inyector PORT MAP (inyectoInsLispro, clk, bombaInsLispro);
     InyectorGlucosa: inyector PORT MAP (inyectoGlucosa, clk, bombaGlucosa);
-    SumadorSistema1: SumToN GENERIC MAP (tamComp+2) PORT MAP (SumA1, SumB1, ResulSum1, SumOverflow1); -- Hemos decidido tener 2 unidades funcionales de suma 
-    SumadorSistema2: SumToN GENERIC MAP (tamComp+2) PORT MAP (SumA2, SumB2, ResulSum2, SumOverflow2); -- Para agilizar los cálculos
-    SumadorSistema3: SumToN GENERIC MAP (tamComp+2) PORT MAP (SumA3, SumB3, ResulSum3, SumOverflow3); -- Reservadas para cada medición 
-    SumadorSistema4: SumToN GENERIC MAP (tamComp+2) PORT MAP (SumA4, SumB4, ResulSum4, SumOverflow4); -- con el fin de prevenir condiciones de carrera
-    
+
+    SumadorSistema1: SumToN GENERIC MAP (tamComp) PORT MAP (lectInsulina(0), lectInsulina(1), ResulSum1, SumOverflow1); -- Hemos decidido tener 3 sumadores por cada media. 
+    SumadorSistema2: SumToN GENERIC MAP (tamComp) PORT MAP (lectInsulina(2), lectInsulina(3), ResulSum2, SumOverflow2); -- Para agilizar los cálculos
+    Media1: SumToN GENERIC MAP (tamComp+1) PORT MAP (AuxSuma1, AuxSuma2, ResulSumInsulina, SumOverflowI); -- Con el tercero reservado para hacer la media
+    SumadorSistema3: SumToN GENERIC MAP (tamComp) PORT MAP (lectGlucosa(0), lectGlucosa(1), ResulSum3, SumOverflow3); -- Estos 3 son para lo mismo
+    SumadorSistema4: SumToN GENERIC MAP (tamComp) PORT MAP (lectGlucosa(2), lectGlucosa(3), ResulSum4, SumOverflow4); -- Pero en vez de para insulina
+    Media2: SumToN GENERIC MAP (tamComp+1) PORT MAP (AuxSuma3, AuxSuma4, ResulSumGlucosa, SumOverflowG); -- Son para glucosa
+
     process (sNGlargina, sNLispro, sNGlucosa, clk) -- PROCESO RELACIONADO CON LEDES RGB
         variable queLefalta : std_logic_vector(1 downto 0); -- Consideramos si falta insulina o glucosa, lo revisa periódicamente o cuando uno cambie.
+        variable ledRGBint :std_logic_vector (2 downto 0) := "010"; -- Del Led RGB, como no lo usa ningun otro proceso y se reescribe cada vez, pues lo dejamos aca para prevenir warnings
     begin
         queLefalta := ((NOT((sNGlargina) AND (sNLispro))))&(NOT(sNGlucosa));
         case (queLefalta) is
-            when "00" => ledRGBint <= "010"; -- Verde es todo correcto.
-            when "01" => ledRGBint <= "001"; -- Azul es que falta glucosa en el inyector
-            when "10" => ledRGBint <= "100"; -- Rojo es que falta insulina (de cualquier tipo) en el inyector
-            when "11" => ledRGBint <= "101"; -- Morado es que faltan insulina y glucosa en inyector
-            when others => ledRGBint <= "111"; -- Color blanco es mensaje de error
+            when "00" => ledRGBint := "010"; -- Verde es todo correcto.
+            when "01" => ledRGBint := "001"; -- Azul es que falta glucosa en el inyector
+            when "10" => ledRGBint := "100"; -- Rojo es que falta insulina (de cualquier tipo) en el inyector
+            when "11" => ledRGBint := "101"; -- Morado es que faltan insulina y glucosa en inyector
+            when others => ledRGBint := "111"; -- Color blanco es mensaje de error
         end case;
         ledRGB <= ledRGBint; -- Pasar valor al ledRGB
     end process;
@@ -220,10 +242,39 @@ begin
     begin
         if (rising_edge(clk)) then
             if (divisor >= 50000000) then -- Reloj central a 100 Mhz, periodo inverso de la frecuencia, 1 entre 100 MHz, debemos dividir tensión, 100000000 subidas es 1 hercio.
-                if (leoGlucosaOInsulina < 16) then -- El sistema tiene ciertos ciclos segun el divisor de frecuencia
+                if (leoGlucosaOInsulina < 7) then -- El sistema tiene ciertos ciclos segun el divisor de frecuencia PUSE 7 EN VEZ DE 8, VER SI ESO ALTERA FUNCIONAMIENTO
+                    if (leoGlucosaOInsulina = 3) then -- Si ya se ha elegido que se va a leer del registro de insulina 
+                        lectInsulina(Cual) <= resultado_int(15 DOWNTO (16-tamComp));
+                    -- Entonces guardamos el valor de dicho registro en nuestra variable de insulina correspondiente (segun el ciclo) para poder computar su media.
+                    else
+                        if(leoGlucosaOinsulina = 5) then -- Si ya se ha elegido que se va a leer del registro de glucosa
+                            lectGlucosa(Cual) <= resultado_int(15 DOWNTO (16-tamComp));
+                        -- Entonces guardamos el valor de dicho registro en nuestra variable de glucosa correspondiente (segun el ciclo) para poder computar su media.
+                        else
+                            if (leoGlucosaOInsulina = 6) then
+                                -- Esto seria a ajustar a la medida apropiada segun el sensor empleado.
+                                if (L = '1') then
+                                    nivelGlucemico <= hipoglucemia; -- Si el nivel de glucosa es menor que el valor hipoglucemico dado, decimos que el paciente esta hipoglucemico
+                                else
+                                    if (L2 = '1') then -- Si el nivel de glucosa es mayor que el valor hiperglucemico dado, decimos que el paciente esta hiperglucemico
+                                        nivelGlucemico <= hiperglucemia;
+                                    else -- En otro caso, diremos que el paciente se encuentra en paramteros normales.
+                                        nivelGlucemico <= normal;
+                                    end if;
+                                end if;
+                            else
+                                    end if;
+                        end if;
+                    end if;
+                    -- Lo de arriba es un ajuste para evitar gated clocks
                     leoGlucosaOInsulina <= leoGlucosaOInsulina +1; -- Cada vez que pasa el suficiente periodo de tiempo, se pasa a la siguiente fase
                 else
                     leoGlucosaOInsulina <= 2; -- Para ignorar las dos primeras lecturas
+                    if (Cual >= 3) then  -- El final del ciclo indica que para el nuevo debo usar una nueva variable de nuestro array para la media, sobreescribiremos la mas antigua
+                        Cual <= 0;
+                    else
+                        Cual <= Cual +1;
+                    end if;
                 end if;
                 divisor <= 0;
                 -- INYECCIONES 
@@ -245,12 +296,12 @@ begin
                             inyectoInsGlargina <= '1';
                         end if;
                     else  
-                        end if;
+                            end if;
                     tiempoinyectoInsGlargina <= tiempoinyectoInsGlargina -1; -- Reducir el timer si es mayor que cero
                 end if;
                 -- CUANDO INYECTAR LISPRO Y GLUCOSA, antes fuera pero el Vivado se queja de multiply-driven si lo ponemos en otro sitio al escribir una senial en 
                 -- dos sitios 
-                if ((leoGlucosaOInsulina = 15)) then -- En la ultima fase del ciclo es cuando inyectamos estas sustancias, debo dar tiempo a completar calculos
+                if ((leoGlucosaOInsulina = 7)) then -- En la ultima fase del ciclo es cuando inyectamos estas sustancias, debo dar tiempo a completar calculos
                     if ((nivelGlucemicoPrevio = nivelGlucemico)) then
                         datAdicionales <= '1'; -- A lo mejor es útil para el futuro que pueda mantener niveles estables e informar al exterior
                     else
@@ -262,7 +313,7 @@ begin
                                 if (L3 = '1') then -- No inyectar esta insulina si estamos a niveles letales de concentracion de insulina
                                     tiempoinyectoInsLispro <= tiempoInyeccion;
                                 else
-                                end if;
+                                    end if;
                             else -- MEDIDA DE SEGURIDAD, SI NO TENEMOS NI IDEA NO INYECTES NADA
                                 tiempoinyectoInsLispro <= 0;
                                 tiempoinyectoGlucosa <= 0;
@@ -271,7 +322,7 @@ begin
                     end if;
                     nivelGlucemicoPrevio <= nivelGlucemico; --Guardamos historial previo de niveles glucemicos.
                 else 
-                end if;
+                    end if;
                 -- DURANTE CUANTO TIEMPO INYECTAR LISPRO
                 if (tiempoinyectoInsLispro < 1) then
                     inyectoInsLispro <= '0';
@@ -283,7 +334,7 @@ begin
                             inyectoInsLispro <= '1';
                         end if;
                     else
-                        end if;
+                            end if;
                     tiempoinyectoInsLispro <= tiempoinyectoInsLispro -1;
                 end if;
                 -- DURANTE CUANTO TIEMPO INYECTAR GLUCOSA
@@ -293,76 +344,79 @@ begin
                     if (inyectoGlucosa = '0') then
                         inyectoGlucosa <= '1';
                     else
-                        end if;
+                            end if;
                     tiempoinyectoGlucosa <= tiempoinyectoGlucosa -1;
                 end if;
             else
                 divisor <= divisor + 1;
             end if;
         else
-        end if;  
+            end if;
     end process;
 
-    process (leoGlucosaOInsulina) --DIGO CUAL ENTRADA LEER, SEGUN FASES
+    -- ESTE BLOQUE COMENTADO SOLO SE HA DEJADO PORQUE ACLARA MUCHO LAS FASES DEL CIRCUITO
+    --    process (leoGlucosaOInsulina, Cual) --DIGO CUAL ENTRADA LEER, SEGUN FASES
+    --    begin
+    --        case (leoGlucosaOInsulina) is
+    --            when 0 => -- Estos dos primeros ciclos en realidad no se usan para leer datos del sensor, vamos a
+    --            when 1 => -- asumir que las lecturas de los sensores del paciente hasta dos fases tras iniciarse la placa estan mal.
+    --            when 2 => -- edaddr_in <= e16daddr_in; -- Leo insulina, para ello primero indico cual es el registro del XADC que tiene el valor de la insulina. Se movio a otro process para evitar latchees y warnings
+
+    --            when 3 => lectInsulina(Cual) <= resultado_int(15 DOWNTO (16-tamComp)); -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura.
+    --            when 4 => -- edaddr_in <= e1Edaddr_in; -- Leo glucosa, para ello primero indico cual es el registro del XADC que tiene el valor de la glucosa. Se movio a otro process para evitar latchees y warnings
+    --            when 5 => lectGlucosa(Cual) <= resultado_int(15 DOWNTO (16-tamComp)); -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura.
+    --            when 6 => -- Fase de calculo de estado del paciente, en la que este proceso no participa.
+    --            when 7 => -- Fase de calculo de tiempos de inyecciones, en la que este proceso no participa.
+    --            when others => errorFases <= '1'; -- Informar de error
+    --        end case;
+    --    end process;
+
+    process (leoGlucosaOInsulina) --DIGO CUAL ENTRADA LEER, SEGUN FASES, 
+        -- ya que el modulo XADC tiene una salida comun para todos sus registros, debemos primero indicar de cual registro leer
     begin
-    case (leoGlucosaOInsulina) is
-        when 0 => -- No hacer nada en las dos primeras fases, suponemos que
-        when 1 => -- las dos primeras lecturas de los sensores del paciente estan mal.
-        when 2 => edaddr_in <= e16daddr_in; -- Leo insulina, para ello primero indico cual es el registro del XADC que tiene el valor de la insulina
-        when 3 => sumA1 <= cerosDeLectura;  -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura y lo guardo para media
-                  sumB1 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
-                  lectInsulina(0) <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- registro el valor por si acaso lo usamos en algún futuro (ej ESP-32)
-        when 4 => sumA2 <= ResulSum1; -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura y lo guardo para media
-                  sumB2 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
-                  lectInsulina(1) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
-        when 5 => sumA1 <= ResulSum2;
-                  sumB1 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Hago lo mismo que en el ciclo anterior
-                  lectInsulina(2) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
-        when 6 => sumA2 <= ResulSum1;
-                  sumB2 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Finalmente cuando tengo el num de lecturas deseadas
-                  lectInsulina(3) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
-        when 7 => lectInsulina(4) <= "0000"&ResulSum2(15 downto (16-tamComp+2)); -- Dividimos por 4 para calcular la media (mover registro a la derecha en este caso)
-                  nivelInsulina <= "00"&ResulSum2(15 downto (16-tamComp+2)); -- y lo enviamos al comparador                                                  
-        when 8 => edaddr_in <= e1Edaddr_in; -- Leo glucosa, para ello primero indico cual es el registro del XADC que tiene el valor de la glucosa
-        when 9 => sumA3 <= cerosDeLectura;  -- y luego, en el ciclo siguiente para dar tiempo, tomo el valor de la lectura y lo guardo para media
-                  sumB3 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
-                  lectGlucosa(0) <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Igual que para la insulina   
-        when 10 => sumA4 <= ResulSum3; 
-                   sumB4 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Para ello comienzo a sumarlo al resultado anterior
-                   lectGlucosa(1) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
-        when 11 => sumA3 <= ResulSum4;
-                   sumB3 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Hago lo mismo que en el ciclo anterior
-                   lectGlucosa(2) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
-        when 12 => sumA4 <= ResulSum3;
-                   sumB4 <= "00"&resultado_int(15 DOWNTO (16-tamComp)); -- Finalmente cuando tengo el num de lecturas deseadas
-                   lectGlucosa(3) <= "00"&resultado_int(15 DOWNTO (16-tamComp));
-        when 13 => lectGlucosa(4) <= "0000"&ResulSum4(15 downto (16-tamComp+2)); -- Dividimos por 4 para calcular la media (mover registro a la derecha en este caso)
-                   nivelGlucosa <= "00"&ResulSum4(15 downto (16-tamComp+2)); -- y lo enviamos al comparador 
-                   nivelGlucosaE <= "00"&ResulSum4(15 downto (16-tamComp+2));
-        when 14 => -- Fase de calculo de estado del paciente, en la que este proceso no participa.
-        when 15 => -- Fase de calculo de tiempos de inyecciones, en la que este proceso no participa.
-        when others => errorFases <= '1'; -- Informar de error
-    end case;
-    end process;
-    -- POR HACER: FILTRO DE KALMANN
-    -- Esto en teoría es un sistema de control
-    process (leoGlucosaOInsulina) -- PROCESO ENCARGADO DE LA FASE DE ANALISIS DEL PACIENTE
-    begin
-        if (leoGlucosaOInsulina = 14) then
-            -- Esto seria a ajustar a la medida apropiada segun el sensor empleado.
-            if (L = '1') then
-                nivelGlucemico <= hipoglucemia; -- Si el nivel de glucosa es menor que el valor hipoglucemico dado, decimos que el paciente esta hipoglucemico
-            else
-                if (L2 = '1') then -- Si el nivel de glucosa es mayor que el valor hiperglucemico dado, decimos que el paciente esta hiperglucemico
-                    nivelGlucemico <= hiperglucemia;
-                else -- En otro caso, diremos que el paciente se encuentra en paramteros normales.
-                    nivelGlucemico <= normal;
-                end if;
-            end if;
+        if (leoGlucosaOInsulina < 4) then
+            edaddr_in <= e16daddr_in; -- Indico al modulo XADC que leo del registro de insulina.
         else
+            edaddr_in <= e1Edaddr_in; -- Indico al modulo XADC que leo del registro de glucosa.
         end if;
     end process;
-    process (datAdicionales) -- PROCESO DE LA ESP32
+
+    --    process (leoGlucosaOInsulina, Cual, resultado_int) --DIGO CUAL ENTRADA LEER, SEGUN FASES
+    --    -- Una vez ya tenemos selccionado el registro (tomamos el ultimo ciclo antes de que el indicador del registro cambie, o nos movamos a la fase de analisis, para asegurarnos que funciona) tomamos el dato.
+    --    begin
+    --        if (leoGlucosaOInsulina = 3) then -- Si ya se ha elegido que se va a leer del registro de insulina 
+    --            lectInsulina(Cual) <= resultado_int(15 DOWNTO (16-tamComp));
+    --            -- Entonces guardamos el valor de dicho registro en nuestra variable de insulina correspondiente (segun el ciclo) para poder computar su media.
+    --        else
+    --            if(leoGlucosaOinsulina = 5) then -- Si ya se ha elegido que se va a leer del registro de glucosa
+    --                lectGlucosa(Cual) <= resultado_int(15 DOWNTO (16-tamComp));
+    --            -- Entonces guardamos el valor de dicho registro en nuestra variable de glucosa correspondiente (segun el ciclo) para poder computar su media.
+    --            else
+    --           end if;
+    --        end if;
+    --    end process;
+
+    -- MEJORA (por hacer): Esto en teoria es un sistema de control, podriamos reducir aun mas el error en medidas siguientes mediante un FILTRO DE KALMANN si 
+    -- lograsemos tener formulas experimentales en pacientes del progreso glucemico de la diabetes a nivel intersticial.
+    -- Dicha mejora se encontraria entre las fases de lectura y la accion del ciclo siguiente.
+
+    --    process (leoGlucosaOInsulina) -- PROCESO ENCARGADO DE LA FASE DE ANALISIS DEL PACIENTE
+    --    begin
+    --        if (leoGlucosaOInsulina = 6) then
+    --            -- Esto seria a ajustar a la medida apropiada segun el sensor empleado.
+    --            if (L = '1') then
+    --                nivelGlucemico <= hipoglucemia; -- Si el nivel de glucosa es menor que el valor hipoglucemico dado, decimos que el paciente esta hipoglucemico
+    --            else
+    --                if (L2 = '1') then -- Si el nivel de glucosa es mayor que el valor hiperglucemico dado, decimos que el paciente esta hiperglucemico
+    --                    nivelGlucemico <= hiperglucemia;
+    --                else -- En otro caso, diremos que el paciente se encuentra en paramteros normales.
+    --                    nivelGlucemico <= normal;
+    --                end if;
+    --            end if;
+    --        else
+    --            end if;
+    --    end process;
+    process (datAdicionales, variableConfigESP) -- PROCESO DE LA ESP32 - SE DEJA PARA EL SIGUIENTE SEMESTRE
     begin
         -- Aqui es donde hariamos algo con esto mediante ESP-32.
         -- Esto es un STUB 
@@ -374,8 +428,8 @@ begin
         --Enviar respuesta
         --datAdicionales <= '0';
         else
-           --A lo mejor ejecutar otra accion
-        end if;
+               --A lo mejor ejecutar otra accion
+            end if;
     end process;
 
 end Arquitectura;
